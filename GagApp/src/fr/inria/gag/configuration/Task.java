@@ -10,7 +10,13 @@ public class Task {
 	private Service service;
 	private ArrayList<Data> inputs;
 	private ArrayList<Data> outputs;
-	private ArrayList<Task> subTask;
+	private ArrayList<Task> subTasks;
+	
+	public Task() {
+		inputs = new ArrayList<Data>();
+		outputs = new ArrayList<Data>();
+		subTasks = new ArrayList<Task>();
+	}
 	public String getAppliedRule() {
 		return AppliedRule;
 	}
@@ -41,11 +47,11 @@ public class Task {
 	public void setOutputs(ArrayList<Data> outputs) {
 		this.outputs = outputs;
 	}
-	public ArrayList<Task> getSubTask() {
-		return subTask;
+	public ArrayList<Task> getSubTasks() {
+		return subTasks;
 	}
-	public void setSubTask(ArrayList<Task> subTask) {
-		this.subTask = subTask;
+	public void setSubTasks(ArrayList<Task> subTask) {
+		this.subTasks = subTask;
 	} 
 	
 	

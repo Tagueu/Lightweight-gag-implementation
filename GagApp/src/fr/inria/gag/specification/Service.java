@@ -10,6 +10,11 @@ public class Service {
 	private ArrayList<Parameter> outputParameters;
 	private ArrayList<DecompositionRule> rules;
 	
+	public Service() {
+		rules = new ArrayList<DecompositionRule>();
+		inputParameters= new ArrayList<Parameter>();
+		outputParameters= new ArrayList<Parameter>();
+	}
 	public String getName() {
 		return name;
 	}

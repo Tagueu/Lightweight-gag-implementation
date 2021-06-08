@@ -7,6 +7,10 @@ import fr.inria.gag.specification.RuntimeData;
 public class Configuration extends RuntimeData{
     private Task root;
     private ArrayList<PendingLocalFunctionComputation> pendingLocalComputations;
+    
+    public Configuration() {
+    	pendingLocalComputations = new ArrayList<PendingLocalFunctionComputation>();
+    }
 	public Task getRoot() {
 		return root;
 	}

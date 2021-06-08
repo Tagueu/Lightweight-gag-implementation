@@ -8,6 +8,9 @@ public class GAG {
 	private RuntimeData configuration;
 	private ArrayList<Service> services;
 	
+	public GAG() {
+		services = new ArrayList<Service>();
+	}
 	public String getName() {
 		return name;
 	}

@@ -7,6 +7,10 @@ public class SemanticRule {
 	private ArrayList<FunctionDeclaration> functionDeclarations;
 	private ArrayList<Equation> equations;
 	
+	public SemanticRule() {
+		functionDeclarations = new ArrayList<FunctionDeclaration>();
+		equations = new ArrayList<Equation>();
+	}
 	public ArrayList<FunctionDeclaration> getFunctionDeclarations() {
 		return functionDeclarations;
 	}

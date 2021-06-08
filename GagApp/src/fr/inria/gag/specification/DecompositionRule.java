@@ -8,6 +8,11 @@ public class DecompositionRule {
 	private Guard guard;
 	private ArrayList<Service> subServices;
 	private SemanticRule semantic;
+	
+	
+	public DecompositionRule() {
+		subServices= new ArrayList<Service>();
+	}
 	public String getName() {
 		return name;
 	}

@@ -9,6 +9,9 @@ public class PendingLocalFunctionComputation {
 	private ArrayList<Data> actualParameters;
 	private FunctionDeclaration functionDeclaration;
 
+	public PendingLocalFunctionComputation() {
+		actualParameters =new ArrayList<Data>();
+	}
 	public Data getDataToCompute() {
 		return dataToCompute;
 	}

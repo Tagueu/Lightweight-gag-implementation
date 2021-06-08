@@ -7,6 +7,9 @@ public class FunctionExpression extends Expression {
 	private FunctionDeclaration function;
 	private ArrayList<IdExpression> idExpressions;
 	
+	public FunctionExpression() {
+		idExpressions= new ArrayList<IdExpression>();
+	}
 	public FunctionDeclaration getFunction() {
 		return function;
 	}

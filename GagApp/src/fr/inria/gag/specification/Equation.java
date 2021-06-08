@@ -4,6 +4,8 @@ public class Equation {
 	
 	private IdExpression leftpart;
 	private Expression rightpart;
+	
+
 	public IdExpression getLeftpart() {
 		return leftpart;
 	}
