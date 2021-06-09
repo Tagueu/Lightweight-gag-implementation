@@ -1,5 +1,8 @@
 package fr.inria.gag.specification;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name="action")
 public class Equation {
 	
 	private IdExpression leftpart;

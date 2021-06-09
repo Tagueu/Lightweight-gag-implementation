@@ -2,6 +2,8 @@ package fr.inria.gag.specification;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public class SemanticRule {
 
 	private ArrayList<FunctionDeclaration> functionDeclarations;
@@ -11,6 +13,7 @@ public class SemanticRule {
 		functionDeclarations = new ArrayList<FunctionDeclaration>();
 		equations = new ArrayList<Equation>();
 	}
+	@XmlElement(name="function")
 	public ArrayList<FunctionDeclaration> getFunctionDeclarations() {
 		return functionDeclarations;
 	}

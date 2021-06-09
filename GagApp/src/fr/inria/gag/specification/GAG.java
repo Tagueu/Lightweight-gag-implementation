@@ -2,9 +2,10 @@ package fr.inria.gag.specification;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
+@XmlRootElement(name="GAG")
 public class GAG {
 
 	private String name;
@@ -14,6 +15,7 @@ public class GAG {
 	public GAG() {
 		services = new ArrayList<Service>();
 	}
+	@XmlAttribute
 	public String getName() {
 		return name;
 	}

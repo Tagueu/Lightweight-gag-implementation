@@ -1,9 +1,12 @@
 package fr.inria.gag.specification;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 public class Guard {
 	private String location;
 	private String method;
 
+	@XmlAttribute
 	public String getLocation() {
 		return location;
 	}
@@ -11,7 +14,7 @@ public class Guard {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	@XmlAttribute
 	public String getMethod() {
 		return method;
 	}

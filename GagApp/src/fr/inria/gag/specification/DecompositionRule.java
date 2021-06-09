@@ -16,6 +16,7 @@ public class DecompositionRule {
 	public DecompositionRule() {
 		subServices= new ArrayList<Service>();
 	}
+	@XmlAttribute
 	public String getName() {
 		return name;
 	}

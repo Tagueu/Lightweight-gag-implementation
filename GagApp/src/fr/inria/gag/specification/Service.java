@@ -3,6 +3,7 @@ package fr.inria.gag.specification;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlID;
 
 public class Service {
@@ -44,6 +45,7 @@ public class Service {
 	public void setOutputParameters(ArrayList<Parameter> outputParameters) {
 		this.outputParameters = outputParameters;
 	}
+	@XmlElement(name="rule")
 	public ArrayList<DecompositionRule> getRules() {
 		return rules;
 	}
