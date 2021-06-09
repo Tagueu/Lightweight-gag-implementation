@@ -2,6 +2,9 @@ package fr.inria.gag.specification;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlIDREF;
+
 public class DecompositionRule {
 
 	private String name;
@@ -25,6 +28,7 @@ public class DecompositionRule {
 	public void setGuard(Guard guard) {
 		this.guard = guard;
 	}
+	@XmlAttribute @XmlIDREF
 	public ArrayList<Service> getSubServices() {
 		return subServices;
 	}

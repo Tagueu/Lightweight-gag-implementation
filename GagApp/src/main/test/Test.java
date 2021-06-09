@@ -1,4 +1,14 @@
 package main.test;
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+import fr.inria.gag.configuration.Configuration;
+import fr.inria.gag.specification.DecompositionRule;
+import fr.inria.gag.specification.GAG;
+import fr.inria.gag.specification.Service;
 import groovy.lang.*;
 
 public class Test {
@@ -13,7 +23,31 @@ public class Test {
 		GroovyShell gsh= new GroovyShell(b);
 		GroovyClassLoader cl=gsh.getClassLoader();
 		cl.addClasspath(classPath);
-		System.out.println(gsh.evaluate("main.test.Test.getFive(obj)"));
+		//System.out.println(gsh.evaluate("main.test.Test.getFive(obj)"));
+		GAG g =new GAG();
+		g.setName("My GAG");
+		Service S1= new Service();
+		S1.setName("S1");
+		Service S2= new Service();
+		S2.setName("S2");
+		DecompositionRule s1r= new DecompositionRule();
+		s1r.getSubServices().add(S2);
+		s1r.getSubServices().add(S1);
+		S1.getRules().add(s1r);
+		g.getServices().add(S1);
+		g.getServices().add(S2);
+		JAXBContext ctx;
+		try {
+			ctx = JAXBContext.newInstance(GAG.class,Configuration.class);
+
+			Marshaller msh = ctx.createMarshaller();
+
+			msh.marshal(g, new File("C:\\Users\\TAGUEU\\Desktop\\file.xml"));
+		} catch (JAXBException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
 	}
 	
 	public static int getFive(int fiveObject) {

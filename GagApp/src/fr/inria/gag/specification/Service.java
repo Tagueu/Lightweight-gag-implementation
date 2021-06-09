@@ -2,6 +2,9 @@ package fr.inria.gag.specification;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+
 public class Service {
       
 	private String name;
@@ -15,9 +18,11 @@ public class Service {
 		inputParameters= new ArrayList<Parameter>();
 		outputParameters= new ArrayList<Parameter>();
 	}
+	@XmlAttribute @XmlID
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

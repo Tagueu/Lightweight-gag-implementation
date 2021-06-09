@@ -2,6 +2,9 @@ package fr.inria.gag.specification;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 public class GAG {
 
 	private String name;
@@ -23,6 +26,7 @@ public class GAG {
 	public void setConfiguration(RuntimeData configuration) {
 		this.configuration = configuration;
 	}
+	@XmlElement(name="service")
 	public ArrayList<Service> getServices() {
 		return services;
 	}

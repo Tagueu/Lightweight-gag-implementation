@@ -524,3 +524,246 @@
 2021-06-08 11:35:09,480 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2021-06-08 15:31:38,086 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2021-06-08 15:40:26,368 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-06-09 12:24:02,148 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-06-09 12:24:04,533 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Updating Gradle version information cache failed. Using outdated cache.
+2021-06-09 12:43:06,653 [Worker-12: Building] ERROR o.e.m.c.i.p.r.ProjectRegistryManager - Could not read pom.xml
+org.eclipse.core.runtime.CoreException: Could not read pom.xml
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readModel(MavenImpl.java:560)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:562)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:518)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:364)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:315)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:151)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:89)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:88)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:197)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:846)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:229)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:277)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:330)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:333)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:385)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:406)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:154)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:244)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.apache.maven.model.io.ModelParseException: expected > to finsh end tag not < from line 32 (position: TEXT seen ...</version>\r\n\t\t</dependency\r\n\t\r\n\t<... @38:3) 
+	at org.apache.maven.model.io.DefaultModelReader.read(DefaultModelReader.java:117)
+	at org.apache.maven.model.io.DefaultModelReader.read(DefaultModelReader.java:85)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readModel(MavenImpl.java:558)
+	... 23 common frames omitted
+Caused by: org.codehaus.plexus.util.xml.pull.XmlPullParserException: expected > to finsh end tag not < from line 32 (position: TEXT seen ...</version>\r\n\t\t</dependency\r\n\t\r\n\t<... @38:3) 
+	at org.codehaus.plexus.util.xml.pull.MXParser.parseEndTag(MXParser.java:2111)
+	at org.codehaus.plexus.util.xml.pull.MXParser.nextImpl(MXParser.java:1361)
+	at org.codehaus.plexus.util.xml.pull.MXParser.next(MXParser.java:1319)
+	at org.codehaus.plexus.util.xml.pull.MXParser.nextTag(MXParser.java:1305)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.parseDependency(MavenXpp3Reader.java:1350)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.parseModel(MavenXpp3Reader.java:2239)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.read(MavenXpp3Reader.java:3872)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.read(MavenXpp3Reader.java:595)
+	at org.apache.maven.model.io.DefaultModelReader.read(DefaultModelReader.java:112)
+	... 25 common frames omitted
+2021-06-09 12:43:09,317 [Worker-19: Building] ERROR o.e.m.c.i.p.r.ProjectRegistryManager - Could not read pom.xml
+org.eclipse.core.runtime.CoreException: Could not read pom.xml
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readModel(MavenImpl.java:560)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:562)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:518)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:364)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:315)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:151)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:89)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:88)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:197)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:846)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:229)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:277)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:330)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:333)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:385)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:406)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:154)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:244)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.apache.maven.model.io.ModelParseException: expected > to finsh end tag not < from line 32 (position: TEXT seen ...</version>\r\n\t\t</dependency\r\n\t\r\n\t<... @38:3) 
+	at org.apache.maven.model.io.DefaultModelReader.read(DefaultModelReader.java:117)
+	at org.apache.maven.model.io.DefaultModelReader.read(DefaultModelReader.java:85)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.readModel(MavenImpl.java:558)
+	... 23 common frames omitted
+Caused by: org.codehaus.plexus.util.xml.pull.XmlPullParserException: expected > to finsh end tag not < from line 32 (position: TEXT seen ...</version>\r\n\t\t</dependency\r\n\t\r\n\t<... @38:3) 
+	at org.codehaus.plexus.util.xml.pull.MXParser.parseEndTag(MXParser.java:2111)
+	at org.codehaus.plexus.util.xml.pull.MXParser.nextImpl(MXParser.java:1361)
+	at org.codehaus.plexus.util.xml.pull.MXParser.next(MXParser.java:1319)
+	at org.codehaus.plexus.util.xml.pull.MXParser.nextTag(MXParser.java:1305)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.parseDependency(MavenXpp3Reader.java:1350)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.parseModel(MavenXpp3Reader.java:2239)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.read(MavenXpp3Reader.java:3872)
+	at org.apache.maven.model.io.xpp3.MavenXpp3Reader.read(MavenXpp3Reader.java:595)
+	at org.apache.maven.model.io.DefaultModelReader.read(DefaultModelReader.java:112)
+	... 25 common frames omitted
+2021-06-09 12:43:18,954 [Worker-20: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:43:21,239 [Worker-20: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.2.5-b10/jaxb-impl-2.2.5-b10.pom
+2021-06-09 12:43:21,599 [Worker-20: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.2.5-b10/jaxb-impl-2.2.5-b10.pom
+2021-06-09 12:43:22,122 [Worker-20: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.2.5-b10/jaxb-impl-2.2.5-b10.jar
+2021-06-09 12:43:23,597 [Worker-20: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.2.5-b10/jaxb-impl-2.2.5-b10.jar
+2021-06-09 12:43:26,891 [Worker-20: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:43:31,235 [Worker-12: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: LibraryProject:LibraryProject:0.0.1-SNAPSHOT @ E:\PhD Recherche\Implementation\workspace-java\LibraryProject\pom.xml.
+2021-06-09 12:43:31,475 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:43:35,701 [Worker-20: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:43:35,974 [Worker-20: Download sources and javadoc] ERROR o.e.m.j.internal.DownloadSourcesJob - Could not download sources for javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT
+org.eclipse.core.runtime.CoreException: Could not resolve artifact javax.xml.bind:jaxb-api:jar:sources:2.2.7-SNAPSHOT
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2021-06-09 12:43:36,758 [Worker-20: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.2.5-b10/jaxb-impl-2.2.5-b10-sources.jar
+2021-06-09 12:43:38,704 [Worker-20: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/com/sun/xml/bind/jaxb-impl/2.2.5-b10/jaxb-impl-2.2.5-b10-sources.jar
+2021-06-09 12:43:39,785 [Worker-20: Download sources and javadoc] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for com.sun.xml.bind:jaxb-impl:2.2.5-b10
+2021-06-09 12:43:39,804 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:43:39,805 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:43:39,810 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:43:39,812 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:43:40,868 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:43:40,869 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:43:40,871 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:43:40,872 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:43:41,431 [Worker-17: Download sources and javadoc] ERROR o.e.m.j.internal.DownloadSourcesJob - Could not download javadoc for javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT
+org.eclipse.core.runtime.CoreException: Could not resolve artifact javax.xml.bind:jaxb-api:jar:javadoc:2.2.7-SNAPSHOT
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2021-06-09 12:43:59,776 [Worker-19: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: LibraryProject:LibraryProject:0.0.1-SNAPSHOT @ E:\PhD Recherche\Implementation\workspace-java\LibraryProject\pom.xml.
+2021-06-09 12:44:00,008 [Worker-19: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:44:01,325 [Worker-19: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:44:01,326 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:44:01,332 [Worker-19: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:44:01,334 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:44:39,133 [Worker-19: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:44:40,522 [Worker-17: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: LibraryProject:LibraryProject:0.0.1-SNAPSHOT @ E:\PhD Recherche\Implementation\workspace-java\LibraryProject\pom.xml.
+2021-06-09 12:44:40,682 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:44:41,792 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:44:41,793 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:44:41,799 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:44:41,801 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:44:50,777 [Worker-18: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:44:51,897 [Worker-12: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: LibraryProject:LibraryProject:0.0.1-SNAPSHOT @ E:\PhD Recherche\Implementation\workspace-java\LibraryProject\pom.xml.
+2021-06-09 12:44:52,055 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - The POM for javax.xml.bind:jaxb-api:jar:2.2.7-SNAPSHOT is missing, no dependency information available
+2021-06-09 12:44:53,199 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:44:53,201 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:44:53,204 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:44:53,205 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:46:29,920 [Worker-22: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml
+2021-06-09 12:46:29,926 [Worker-22: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:29,943 [Worker-22: reload maven project] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:30,081 [Worker-23: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: LibraryProject:LibraryProject:0.0.1-SNAPSHOT @ E:\PhD Recherche\Implementation\workspace-java\LibraryProject\pom.xml.
+2021-06-09 12:46:30,286 [Worker-23: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:30,289 [Worker-23: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:30,834 [Worker-22: reload maven project] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/jaxb-api-2.2.7-SNAPSHOT.pom
+2021-06-09 12:46:30,892 [Worker-23: Building] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/jaxb-api-2.2.7-SNAPSHOT.pom
+2021-06-09 12:46:32,157 [Worker-23: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:46:32,159 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:46:32,164 [Worker-23: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:46:32,165 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:46:32,987 [Worker-24: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:32,989 [Worker-24: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:33,008 [Worker-24: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:33,346 [Worker-24: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/jaxb-api-2.2.7-SNAPSHOT-sources.jar
+2021-06-09 12:46:33,373 [Worker-24: Download sources and javadoc] ERROR o.e.m.j.internal.DownloadSourcesJob - Could not download sources for javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT
+org.eclipse.core.runtime.CoreException: Could not resolve artifact javax.xml.bind:jaxb-api:jar:sources:2.2.7-SNAPSHOT
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:304)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2021-06-09 12:46:51,024 [Worker-16: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: LibraryProject:LibraryProject:0.0.1-SNAPSHOT @ E:\PhD Recherche\Implementation\workspace-java\LibraryProject\pom.xml.
+2021-06-09 12:46:51,203 [Worker-16: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:51,207 [Worker-16: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:52,490 [Worker-16: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:46:52,491 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 12:46:52,494 [Worker-16: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 12:46:52,495 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 12:46:53,340 [Worker-23: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:53,343 [Worker-23: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:53,361 [Worker-23: Download sources and javadoc] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 12:46:53,812 [Worker-23: Download sources and javadoc] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/jaxb-api-2.2.7-SNAPSHOT-javadoc.jar
+2021-06-09 12:46:53,818 [Worker-23: Download sources and javadoc] ERROR o.e.m.j.internal.DownloadSourcesJob - Could not download javadoc for javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT
+org.eclipse.core.runtime.CoreException: Could not resolve artifact javax.xml.bind:jaxb-api:jar:javadoc:2.2.7-SNAPSHOT
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.lambda$4(MavenImpl.java:804)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:114)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:772)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.resolve(MavenImpl.java:749)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.download(DownloadSourcesJob.java:330)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadAttachments(DownloadSourcesJob.java:316)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadMaven(DownloadSourcesJob.java:269)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.downloadFilesAndPopulateToUpdate(DownloadSourcesJob.java:233)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.lambda$0(DownloadSourcesJob.java:161)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:179)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:153)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:101)
+	at org.eclipse.m2e.core.internal.embedder.MavenImpl.execute(MavenImpl.java:1374)
+	at org.eclipse.m2e.jdt.internal.DownloadSourcesJob.run(DownloadSourcesJob.java:161)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2021-06-09 14:38:07,488 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2021-06-09 14:38:48,951 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 14:38:48,956 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 14:39:00,961 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 14:39:00,963 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 14:39:00,966 [Worker-7: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 14:39:00,967 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
+2021-06-09 14:51:16,636 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-06-09 14:52:01,718 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 14:52:01,723 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Failure to transfer javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from http://repo.maven.apache.org/maven2/ was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced. Original error: Could not transfer metadata javax.xml.bind:jaxb-api:2.2.7-SNAPSHOT/maven-metadata.xml from/to central (http://repo.maven.apache.org/maven2/): Failed to transfer http://repo.maven.apache.org/maven2/javax/xml/bind/jaxb-api/2.2.7-SNAPSHOT/maven-metadata.xml. Error code 501, HTTPS Required
+2021-06-09 14:52:11,730 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 14:52:11,733 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\main\resources
+2021-06-09 14:52:11,743 [Worker-1: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2021-06-09 14:52:11,744 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\PhD Recherche\Implementation\workspace-java\LibraryProject\src\test\resources
