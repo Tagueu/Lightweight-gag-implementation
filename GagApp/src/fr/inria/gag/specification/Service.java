@@ -33,12 +33,14 @@ public class Service {
 	public void setAxiom(Boolean axiom) {
 		this.axiom = axiom;
 	}
+	@XmlElement(name="input")
 	public ArrayList<Parameter> getInputParameters() {
 		return inputParameters;
 	}
 	public void setInputParameters(ArrayList<Parameter> inputParameters) {
 		this.inputParameters = inputParameters;
 	}
+	@XmlElement(name="output")
 	public ArrayList<Parameter> getOutputParameters() {
 		return outputParameters;
 	}

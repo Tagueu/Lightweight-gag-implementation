@@ -9,9 +9,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 import fr.inria.gag.configuration.Configuration;
 import fr.inria.gag.specification.DecompositionRule;
+import fr.inria.gag.specification.Equation;
 import fr.inria.gag.specification.FunctionDeclaration;
+import fr.inria.gag.specification.FunctionExpression;
 import fr.inria.gag.specification.GAG;
 import fr.inria.gag.specification.Guard;
+import fr.inria.gag.specification.IdExpression;
+import fr.inria.gag.specification.Parameter;
 import fr.inria.gag.specification.SemanticRule;
 import fr.inria.gag.specification.Service;
 import groovy.lang.*;
@@ -36,6 +40,9 @@ public class Test {
 		Service S2= new Service();
 		S2.setName("S2");
 		
+		S1.getInputParameters().add(new Parameter("a"));
+		S1.getInputParameters().add(new Parameter("b"));
+		S1.getOutputParameters().add(new Parameter("c"));
 		DecompositionRule s1r= new DecompositionRule();
 		s1r.getSubServices().add(S2);
 		s1r.getSubServices().add(S1);
@@ -51,13 +58,30 @@ public class Test {
 		f1.setMethod("f1");
 		sem.getFunctionDeclarations().add(f1);
 		s1r.setSemantic(sem);
-		//Equation eq1
+		Equation eq1 = new Equation();
+		IdExpression eq1l = new IdExpression();
+		eq1l.setParameterName("a");
+		eq1l.setServiceName("S1");
+		IdExpression eq1r = new IdExpression();
+		eq1r.setParameterName("b");
+		eq1r.setServiceName("S2");
+		eq1.setLeftpart(eq1l);
+		eq1.setRightpart(eq1r);
+		sem.getEquations().add(eq1);
 		S1.getRules().add(s1r);
 		g.getServices().add(S1);
 		g.getServices().add(S2);
+		FunctionExpression funcExpr = new FunctionExpression();
+		funcExpr.setFunction(f1);
+		funcExpr.getIdExpressions().add(eq1r);
+		funcExpr.getIdExpressions().add(eq1l);
+		Equation eq2 =new Equation();
+		eq2.setLeftpart(eq1l);
+		eq2.setRightpart(funcExpr);
+		sem.getEquations().add(eq2);
 		JAXBContext ctx;
 		try {
-			ctx = JAXBContext.newInstance(GAG.class,Configuration.class);
+			ctx = JAXBContext.newInstance(GAG.class,Configuration.class,IdExpression.class, FunctionExpression.class);
 
 			Marshaller msh = ctx.createMarshaller();
 			Unmarshaller umsh = ctx.createUnmarshaller();

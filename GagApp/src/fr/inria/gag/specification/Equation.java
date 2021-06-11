@@ -1,8 +1,9 @@
 package fr.inria.gag.specification;
 
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(name="action")
+
 public class Equation {
 	
 	private IdExpression leftpart;
@@ -15,6 +16,7 @@ public class Equation {
 	public void setLeftpart(IdExpression leftpart) {
 		this.leftpart = leftpart;
 	}
+	
 	public Expression getRightpart() {
 		return rightpart;
 	}

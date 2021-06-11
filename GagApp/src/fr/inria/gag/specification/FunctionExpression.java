@@ -3,7 +3,10 @@ package fr.inria.gag.specification;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 public class FunctionExpression extends Expression {
 	
@@ -20,6 +23,7 @@ public class FunctionExpression extends Expression {
 	public void setFunction(FunctionDeclaration function) {
 		this.function = function;
 	}
+	@XmlElement(name="arg")
 	public ArrayList<IdExpression> getIdExpressions() {
 		return idExpressions;
 	}
