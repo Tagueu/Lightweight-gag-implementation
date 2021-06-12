@@ -18,6 +18,7 @@ import fr.inria.gag.specification.IdExpression;
 import fr.inria.gag.specification.Parameter;
 import fr.inria.gag.specification.SemanticRule;
 import fr.inria.gag.specification.Service;
+import fr.inria.gag.specification.aspect.GAGAspect;
 import groovy.lang.*;
 
 public class Test {
@@ -39,6 +40,7 @@ public class Test {
 		S1.setName("S1");
 		Service S2= new Service();
 		S2.setName("S2");
+		S1.setAxiom(true);
 		
 		S1.getInputParameters().add(new Parameter("a"));
 		S1.getInputParameters().add(new Parameter("b"));
@@ -79,6 +81,7 @@ public class Test {
 		eq2.setLeftpart(eq1l);
 		eq2.setRightpart(funcExpr);
 		sem.getEquations().add(eq2);
+		//new GAGAspect(g).run();
 		JAXBContext ctx;
 		try {
 			ctx = JAXBContext.newInstance(GAG.class,Configuration.class,IdExpression.class, FunctionExpression.class);
@@ -86,8 +89,11 @@ public class Test {
 			Marshaller msh = ctx.createMarshaller();
 			Unmarshaller umsh = ctx.createUnmarshaller();
 			msh.marshal(g, new File("C:\\Users\\TAGUEU\\Desktop\\file.xml"));
-			GAG mygag= (GAG) umsh.unmarshal(new File("C:\\Users\\TAGUEU\\Desktop\\file.xml"));
-			msh.marshal(mygag, new File("C:\\Users\\TAGUEU\\Desktop\\file1.xml"));
+			//GAG mygag= (GAG) umsh.unmarshal(new File("C:\\Users\\TAGUEU\\Desktop\\file.xml"));
+			//msh.marshal(mygag, new File("C:\\Users\\TAGUEU\\Desktop\\file1.xml"));
+			
+			GAG mygag= (GAG) umsh.unmarshal(new File("gag-specification\\gag.xml"));
+			new GAGAspect(mygag).run();
 			
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block

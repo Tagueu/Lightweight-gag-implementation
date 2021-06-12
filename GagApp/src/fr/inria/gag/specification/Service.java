@@ -18,6 +18,7 @@ public class Service {
 		rules = new ArrayList<DecompositionRule>();
 		inputParameters= new ArrayList<Parameter>();
 		outputParameters= new ArrayList<Parameter>();
+		axiom=false;
 	}
 	@XmlAttribute @XmlID
 	public String getName() {
@@ -27,6 +28,8 @@ public class Service {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@XmlAttribute
 	public Boolean isAxiom() {
 		return axiom;
 	}
@@ -47,7 +50,7 @@ public class Service {
 	public void setOutputParameters(ArrayList<Parameter> outputParameters) {
 		this.outputParameters = outputParameters;
 	}
-	@XmlElement(name="rule")
+	@XmlElement(name="production")
 	public ArrayList<DecompositionRule> getRules() {
 		return rules;
 	}

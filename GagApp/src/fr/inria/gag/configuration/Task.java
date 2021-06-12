@@ -16,6 +16,7 @@ public class Task {
 		inputs = new ArrayList<Data>();
 		outputs = new ArrayList<Data>();
 		subTasks = new ArrayList<Task>();
+		open=true;
 	}
 	public String getAppliedRule() {
 		return AppliedRule;

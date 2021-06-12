@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GAG name="My GAG">
+	<service axiom="true" name="S1">
+		<input name="a" />
+		<input name="b" />
+		<output name="c" />
+		<production name="R1">
+			<guard location="local.functions.Util" method="guard" />
+			<semantic>
+
+				<function-declaration
+					location="local.functions.Util" method="f" name="f" />
+				<action>
+					<leftpart service="S1" parameter="c" />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="functionExpression" function="f">
+						<arg service="S1" parameter="a" />
+						<arg service="S1" parameter="b" />
+					</rightpart>
+				</action>
+			</semantic>
+		</production>
+	</service>
+	<service name="S2">
+		<input name="a" />
+		<output name="b" />
+		<production name="R1">
+			<semantic>
+				<function-declaration
+					location="local.functions.Util" method="g" name="g" />
+				<action>
+					<leftpart service="S2" parameter="b" />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="functionExpression" function="g">
+						<arg service="S2" parameter="a" />
+					</rightpart>
+				</action>
+			</semantic>
+		</production>
+	</service>
+	<service axiom="true" name="S3">
+		<input name="a" />
+		<output name="b" />
+		<output name="c" />
+		<production name="R1" subServices="S1 S2">
+			<semantic>
+				<action>
+					<leftpart service="S1" parameter="a"  />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="idExpression" service="S3" parameter="a"  />
+				</action>
+				<action>
+					<leftpart service="S1" parameter="b"  />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="idExpression" service="S2" parameter="b"  />
+				</action>
+				<action>
+					<leftpart service="S2" parameter="a"  />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="idExpression" service="S3" parameter="a"  />
+				</action>
+				<action>
+					<leftpart service="S3" parameter="b"  />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="idExpression" service="S2" parameter="b"  />
+				</action>
+				<action>
+					<leftpart service="S3" parameter="c"  />
+					<rightpart
+						xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+						xsi:type="idExpression" service="S1" parameter="c"  />
+				</action>
+			
+			</semantic>
+		</production>
+	</service>
+</GAG>
