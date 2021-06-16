@@ -1,9 +1,9 @@
 package fr.inria.gag.specification.aspect
 
-import fr.inria.gag.specification.Guard
-import fr.inria.gag.configuration.Task
-import fr.inria.gag.specification.FunctionDeclaration
-import fr.inria.gag.configuration.PendingLocalFunctionComputation
+import fr.inria.gag.model.specification.Guard
+import fr.inria.gag.model.configuration.Task
+import fr.inria.gag.model.specification.FunctionDeclaration
+import fr.inria.gag.model.configuration.PendingLocalFunctionComputation
 import fr.inria.gag.configuration.aspect.PendingLocalFunctionComputationAspect
 
 class GuardAspect extends Guard{

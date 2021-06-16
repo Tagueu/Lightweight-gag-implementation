@@ -1,6 +1,6 @@
 package fr.inria.gag.specification.aspect
 
-import fr.inria.gag.specification.Service
+import fr.inria.gag.model.specification.Service
 
 class ServiceAspect extends Service {
 	

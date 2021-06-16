@@ -1,7 +1,7 @@
 package fr.inria.gag.configuration.aspect;
 
-import fr.inria.gag.configuration.Data;
-import fr.inria.gag.configuration.Task;
+import fr.inria.gag.model.configuration.Data;
+import fr.inria.gag.model.configuration.Task;
 import java.util.ArrayList;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 

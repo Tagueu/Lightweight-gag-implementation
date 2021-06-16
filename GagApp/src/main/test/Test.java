@@ -7,17 +7,17 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAttribute;
 
-import fr.inria.gag.configuration.Configuration;
-import fr.inria.gag.specification.DecompositionRule;
-import fr.inria.gag.specification.Equation;
-import fr.inria.gag.specification.FunctionDeclaration;
-import fr.inria.gag.specification.FunctionExpression;
-import fr.inria.gag.specification.GAG;
-import fr.inria.gag.specification.Guard;
-import fr.inria.gag.specification.IdExpression;
-import fr.inria.gag.specification.Parameter;
-import fr.inria.gag.specification.SemanticRule;
-import fr.inria.gag.specification.Service;
+import fr.inria.gag.model.configuration.Configuration;
+import fr.inria.gag.model.specification.DecompositionRule;
+import fr.inria.gag.model.specification.Equation;
+import fr.inria.gag.model.specification.FunctionDeclaration;
+import fr.inria.gag.model.specification.FunctionExpression;
+import fr.inria.gag.model.specification.GAG;
+import fr.inria.gag.model.specification.Guard;
+import fr.inria.gag.model.specification.IdExpression;
+import fr.inria.gag.model.specification.Parameter;
+import fr.inria.gag.model.specification.SemanticRule;
+import fr.inria.gag.model.specification.Service;
 import fr.inria.gag.specification.aspect.GAGAspect;
 import groovy.lang.*;
 

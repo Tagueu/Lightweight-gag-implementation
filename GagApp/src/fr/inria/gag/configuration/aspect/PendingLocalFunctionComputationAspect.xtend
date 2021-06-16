@@ -1,6 +1,6 @@
 package fr.inria.gag.configuration.aspect
 
-import fr.inria.gag.configuration.PendingLocalFunctionComputation
+import fr.inria.gag.model.configuration.PendingLocalFunctionComputation
 import fr.inria.gag.util.EncapsulatedValue
 import groovy.lang.*
 

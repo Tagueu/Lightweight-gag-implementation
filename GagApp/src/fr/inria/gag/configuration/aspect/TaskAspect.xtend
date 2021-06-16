@@ -1,7 +1,7 @@
 package fr.inria.gag.configuration.aspect
 
-import fr.inria.gag.configuration.Task
-import fr.inria.gag.configuration.Data
+import fr.inria.gag.model.configuration.Task
+import fr.inria.gag.model.configuration.Data
 
 class TaskAspect extends Task{
 	

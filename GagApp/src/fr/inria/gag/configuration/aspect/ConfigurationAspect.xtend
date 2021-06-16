@@ -1,7 +1,7 @@
 package fr.inria.gag.configuration.aspect
 
-import fr.inria.gag.configuration.Configuration
-import fr.inria.gag.configuration.Task
+import fr.inria.gag.model.configuration.Configuration
+import fr.inria.gag.model.configuration.Task
 
 class ConfigurationAspect extends Configuration{
 	new(){

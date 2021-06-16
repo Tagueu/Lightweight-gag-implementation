@@ -1,5 +1,5 @@
 package fr.inria.gag.configuration.aspect
-import fr.inria.gag.configuration.Data;
+import fr.inria.gag.model.configuration.Data;
 import fr.inria.gag.util.EncapsulatedValue
 
 class DataAspect extends Data{

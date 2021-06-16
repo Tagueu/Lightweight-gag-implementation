@@ -1,19 +1,19 @@
 package fr.inria.gag.specification.aspect
 
-import fr.inria.gag.specification.GAG
-import fr.inria.gag.configuration.Configuration
-import fr.inria.gag.configuration.Task
-import fr.inria.gag.configuration.Data
-import fr.inria.gag.specification.Service
+import fr.inria.gag.model.specification.GAG
+import fr.inria.gag.model.configuration.Configuration
+import fr.inria.gag.model.configuration.Task
+import fr.inria.gag.model.configuration.Data
+import fr.inria.gag.model.specification.Service
 import java.util.ArrayList
 import fr.inria.gag.util.Console
 import fr.inria.gag.util.EncapsulatedValue
-import fr.inria.gag.specification.DecompositionRule
-import fr.inria.gag.specification.IdExpression
-import fr.inria.gag.specification.FunctionExpression
-import fr.inria.gag.configuration.PendingLocalFunctionComputation
+import fr.inria.gag.model.specification.DecompositionRule
+import fr.inria.gag.model.specification.IdExpression
+import fr.inria.gag.model.specification.FunctionExpression
+import fr.inria.gag.model.configuration.PendingLocalFunctionComputation
 import java.util.List
-import fr.inria.gag.specification.Guard
+import fr.inria.gag.model.specification.Guard
 import fr.inria.gag.configuration.aspect.PendingLocalFunctionComputationAspect
 import fr.inria.gag.configuration.aspect.ConfigurationAspect
 
@@ -29,7 +29,7 @@ class GAGAspect extends GAG{
 	}
 	
 	def void initExecution(){
-		this.configuration=new Configuration();
+		if(this.configuration===null){this.configuration = new Configuration()}
 	}
 	
 	def void run() {
@@ -211,8 +211,8 @@ class GAGAspect extends GAG{
 		this.computeFunction(conf.pendingLocalComputations);
 	}
 
-	def fr.inria.gag.configuration.Data findReference(String[] ref, ArrayList<Task> tasks) {
-		var objectRef = null as fr.inria.gag.configuration.Data;
+	def fr.inria.gag.model.configuration.Data findReference(String[] ref, ArrayList<Task> tasks) {
+		var objectRef = null as fr.inria.gag.model.configuration.Data;
 		var serviceName = ref.get(0).toString.trim;
 		var serviceParameter = ref.get(1).toString.trim;
 		// Console.debug(serviceName+"."+serviceParameter);

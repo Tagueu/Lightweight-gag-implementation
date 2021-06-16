@@ -1,21 +1,21 @@
 package fr.inria.gag.specification.aspect;
 
 import com.google.common.base.Objects;
-import fr.inria.gag.configuration.Configuration;
-import fr.inria.gag.configuration.Data;
-import fr.inria.gag.configuration.PendingLocalFunctionComputation;
-import fr.inria.gag.configuration.Task;
 import fr.inria.gag.configuration.aspect.ConfigurationAspect;
 import fr.inria.gag.configuration.aspect.PendingLocalFunctionComputationAspect;
-import fr.inria.gag.specification.DecompositionRule;
-import fr.inria.gag.specification.Equation;
-import fr.inria.gag.specification.Expression;
-import fr.inria.gag.specification.FunctionExpression;
-import fr.inria.gag.specification.GAG;
-import fr.inria.gag.specification.Guard;
-import fr.inria.gag.specification.IdExpression;
-import fr.inria.gag.specification.RuntimeData;
-import fr.inria.gag.specification.Service;
+import fr.inria.gag.model.configuration.Configuration;
+import fr.inria.gag.model.configuration.Data;
+import fr.inria.gag.model.configuration.PendingLocalFunctionComputation;
+import fr.inria.gag.model.configuration.Task;
+import fr.inria.gag.model.specification.DecompositionRule;
+import fr.inria.gag.model.specification.Equation;
+import fr.inria.gag.model.specification.Expression;
+import fr.inria.gag.model.specification.FunctionExpression;
+import fr.inria.gag.model.specification.GAG;
+import fr.inria.gag.model.specification.Guard;
+import fr.inria.gag.model.specification.IdExpression;
+import fr.inria.gag.model.specification.RuntimeData;
+import fr.inria.gag.model.specification.Service;
 import fr.inria.gag.util.Console;
 import fr.inria.gag.util.EncapsulatedValue;
 import java.util.ArrayList;
@@ -34,8 +34,12 @@ public class GAGAspect extends GAG {
   }
   
   public void initExecution() {
-    Configuration _configuration = new Configuration();
-    this.setConfiguration(_configuration);
+    RuntimeData _configuration = this.getConfiguration();
+    boolean _tripleEquals = (_configuration == null);
+    if (_tripleEquals) {
+      Configuration _configuration_1 = new Configuration();
+      this.setConfiguration(_configuration_1);
+    }
   }
   
   public void run() {
