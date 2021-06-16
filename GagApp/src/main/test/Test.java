@@ -19,6 +19,7 @@ import fr.inria.gag.model.specification.Parameter;
 import fr.inria.gag.model.specification.SemanticRule;
 import fr.inria.gag.model.specification.Service;
 import fr.inria.gag.specification.aspect.GAGAspect;
+import fr.inria.gag.ui.component.ComponentIHM;
 import groovy.lang.*;
 
 public class Test {
@@ -93,8 +94,12 @@ public class Test {
 			//msh.marshal(mygag, new File("C:\\Users\\TAGUEU\\Desktop\\file1.xml"));
 			
 			GAG mygag= (GAG) umsh.unmarshal(new File("gag-specification\\gag.xml"));
-			new GAGAspect(mygag).run();
-			
+			GAGAspect gasp=new GAGAspect(mygag);
+			ComponentIHM window = new ComponentIHM();
+			window.setVisible(true);
+			window.disposeTheGraph(mygag);
+			window.setTitle("My Component");
+			gasp.runWithExternalOuputInterface(window.getGraphLayout());
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

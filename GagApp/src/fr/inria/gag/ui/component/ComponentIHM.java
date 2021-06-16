@@ -10,13 +10,24 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import fr.inria.gag.model.specification.GAG;
+import fr.inria.gag.specification.aspect.GAGAspect;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ComponentIHM {
 
 	private JFrame frame;
+	private JPanel panelConfigurationGraph;
+	private GAGGraphAspect graphLayout;
 
 	/**
 	 * Launch the application.
@@ -49,6 +60,16 @@ public class ComponentIHM {
 		frame.setBounds(100, 100, 703, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		 try {
+	            //UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+			 UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
+	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+	            Logger.getLogger(ComponentIHM.class.getName()).log(Level.SEVERE, null, ex);
+	        } catch (UnsupportedLookAndFeelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -70,6 +91,9 @@ public class ComponentIHM {
 		
 		JButton btnSave = new JButton("Save");
 		panelBtn.add(btnSave);
+		
+		JButton btnStart = new JButton("Start");
+		panelBtn.add(btnStart);
 		
 		JButton btnPause = new JButton("Pause");
 		panelBtn.add(btnPause);
@@ -124,6 +148,31 @@ public class ComponentIHM {
 		
 		JLabel lblNewLabel = new JLabel("Configuration");
 		panelConfigurationText.add(lblNewLabel);
+		
+		panelConfigurationGraph = new JPanel();
+		panelConfiguration.add(panelConfigurationGraph, BorderLayout.CENTER);
 	}
+	
+	public void disposeTheGraph(GAG gag) {
+		this.graphLayout =new GAGGraphAspect(gag);
+		this.graphLayout.dispose(panelConfigurationGraph);
+	}
+	
+	public void setVisible(boolean visible) {
+		this.frame.setVisible(visible);
+	}
+
+	public GAGGraphAspect getGraphLayout() {
+		return graphLayout;
+	}
+
+	public void setGraphLayout(GAGGraphAspect graphLayout) {
+		this.graphLayout = graphLayout;
+	}
+	
+	public void setTitle(String title) {
+		frame.setTitle(title);
+	}
+	
 
 }

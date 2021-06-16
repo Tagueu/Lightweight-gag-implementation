@@ -14,5 +14,10 @@
 	<classpathentry kind="lib" path="lib/jaxb-api-2.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/jgraphx-4.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/pgslookandfeel-1.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/synthetica.jar"/>
+	<classpathentry kind="lib" path="lib/syntheticaOrangeMetallic.jar"/>
+	<classpathentry kind="lib" path="lib/weblaf-demo-1.2.13-jar-with-dependencies.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

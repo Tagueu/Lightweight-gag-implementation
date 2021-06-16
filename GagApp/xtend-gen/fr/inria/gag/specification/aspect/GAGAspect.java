@@ -65,6 +65,31 @@ public class GAGAspect extends GAG {
     Console.debug("Exécution terminée !");
   }
   
+  public void runWithExternalOuputInterface(final OutputInterface OI) {
+    this.initExecution();
+    RuntimeData _configuration = this.getConfiguration();
+    final Configuration conf = ((Configuration) _configuration);
+    this.chooseTheAxiom();
+    OI.update(this);
+    ArrayList<Task> openTask = this.getOpenTask(conf.getRoot());
+    while ((openTask.size() != 0)) {
+      {
+        Task task = this.chooseTask(openTask);
+        DecompositionRule rule = this.chooseRule(task);
+        boolean _notEquals = (!Objects.equal(rule, null));
+        if (_notEquals) {
+          this.applyRule(task, rule);
+        }
+        String _print = this.print(conf);
+        String _plus = ("La configuration resultante est " + _print);
+        Console.debug(_plus);
+        OI.update(this);
+        openTask = this.getOpenTask(conf.getRoot());
+      }
+    }
+    Console.debug("Exécution terminée !");
+  }
+  
   public void chooseTheAxiom() {
     final ArrayList<Service> services = this.getServices();
     final ArrayList<Service> axioms = new ArrayList<Service>();

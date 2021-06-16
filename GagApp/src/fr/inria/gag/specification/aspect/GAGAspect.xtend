@@ -57,6 +57,31 @@ class GAGAspect extends GAG{
 		Console.debug("Exécution terminée !");
 	}
 	
+	def void runWithExternalOuputInterface(OutputInterface  OI) {
+		
+		initExecution();
+		val conf = this.configuration as Configuration;
+		
+		
+		
+		
+
+		// get the axioms
+		chooseTheAxiom();
+		OI.update(this);
+		// run the conf
+		var openTask = getOpenTask(conf.root);
+		while (openTask.size != 0) {
+			var task = chooseTask(openTask);
+			var rule = chooseRule(task);
+			if(rule !=null){
+			applyRule(task, rule);}
+			Console.debug("La configuration resultante est " + conf.print());
+			OI.update(this);
+			openTask = getOpenTask( conf.root);
+		}
+		Console.debug("Exécution terminée !");
+	}
 
 	
 	def void chooseTheAxiom() {
