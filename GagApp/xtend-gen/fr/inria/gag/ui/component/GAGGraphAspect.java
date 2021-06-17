@@ -59,6 +59,10 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
   
   public static String styleServiceOpen = ((((((mxConstants.STYLE_FILLCOLOR + "=#c0bfc6") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";");
   
+  public static String styleServiceInput = (((((((((mxConstants.STYLE_FILLCOLOR + "=#ffffff") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";") + mxConstants.STYLE_STROKECOLOR) + "=green") + ";");
+  
+  public static String styleServiceOutput = (((((((((mxConstants.STYLE_FILLCOLOR + "=#ffffff") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";") + mxConstants.STYLE_STROKECOLOR) + "=red") + ";");
+  
   private Object parent;
   
   public GAGGraphAspect(final GAG g) {
@@ -142,6 +146,8 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
       }
     } finally {
       this.layoutForParent.setParentBorder(5);
+      this.layoutForParent.setParallelEdgeSpacing(50);
+      this.layoutForParent.setIntraCellSpacing(150);
       this.layoutForParent.execute(this.parent);
       this.graph.getModel().endUpdate();
     }
@@ -153,7 +159,10 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
       int _size = servicesOpen.size();
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
       for (final Integer i : _doubleDotLessThan) {
-        this.drawInputs(servicesOpen.get((i).intValue()));
+        {
+          this.drawInputs(servicesOpen.get((i).intValue()));
+          this.drawOutputs(servicesOpen.get((i).intValue()));
+        }
       }
     }
     CustomGraphComponent _customGraphComponent = new CustomGraphComponent(this.graph);
@@ -189,14 +198,32 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
         int _size_1 = task.getInputs().size();
         int _minus = (_size_1 - (i).intValue());
         int _plus = (_minus + 1);
-        int _multiply = (_plus * 20);
+        int _multiply = (_plus * 25);
         double _minus_1 = (_centerX - _multiply);
         double _centerY = rec.getCenterY();
         double _plus_1 = (_centerY + 30);
         int _length = data.getParameter().getName().length();
         int _multiply_1 = (_length * 20);
-        int _plus_2 = (_multiply_1 + 10);
-        final Object v = this.graph.insertVertex(this.parent, null, data, _minus_1, _plus_1, _plus_2, 20, (((GAGGraphAspect.styleIN + mxConstants.STYLE_STROKECOLOR) + "=") + "#ffffff;"));
+        final Object v = this.graph.insertVertex(this.parent, null, data, _minus_1, _plus_1, _multiply_1, 15, GAGGraphAspect.styleServiceInput);
+        this.mapDataGraph.put(data, v);
+      }
+    }
+  }
+  
+  public void drawOutputs(final Task task) {
+    final mxRectangle rec = this.graph.getCellBounds(this.mapDataGraph.get(task));
+    int _size = task.getOutputs().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        Data data = task.getOutputs().get((i).intValue());
+        double _centerX = rec.getCenterX();
+        double _plus = (_centerX + (((i).intValue() + 1) * 25));
+        double _centerY = rec.getCenterY();
+        double _plus_1 = (_centerY + 30);
+        int _length = data.getParameter().getName().length();
+        int _multiply = (_length * 20);
+        final Object v = this.graph.insertVertex(this.parent, null, data, _plus, _plus_1, _multiply, 15, GAGGraphAspect.styleServiceOutput);
         this.mapDataGraph.put(data, v);
       }
     }

@@ -40,6 +40,8 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface{
     //new style
     public static String styleArrowSun=mxConstants.STYLE_ENDARROW + "=" + mxConstants.ARROW_OPEN+";"+mxConstants.STYLE_STARTARROW + "=" + mxConstants.ARROW_OVAL +";";
 	public static String styleServiceOpen=mxConstants.STYLE_FILLCOLOR + "=#c0bfc6"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";";
+	public static String styleServiceInput=mxConstants.STYLE_FILLCOLOR + "=#ffffff"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";"+mxConstants.STYLE_STROKECOLOR+"=green"+";";
+	public static String styleServiceOutput=mxConstants.STYLE_FILLCOLOR + "=#ffffff"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";"+mxConstants.STYLE_STROKECOLOR+"=red"+";";
 	Object parent
     
     new(GAG g){
@@ -114,17 +116,22 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface{
 	        }
 	        finally{
 	        	 layoutForParent.parentBorder = 5;
+	        	 layoutForParent.parallelEdgeSpacing = 50 ;
+	        	 layoutForParent.intraCellSpacing = 150;
+	        	 
 	        	 layoutForParent.execute(parent);
 	        	 graph.getModel().endUpdate();
 	        }
 	        
-	        // put inputs;
+	        // put inputs and outputs;
 	        if(this.configuration!=null){
 	        val servicesOpen = this.getOpenTask((this.configuration as Configuration).root);
 	        for(i:0 ..<servicesOpen.size){
 	        	servicesOpen.get(i).drawInputs();
+	        	servicesOpen.get(i).drawOutputs();
 	        }
 	        }
+	        
 	        
 	      
 	        
@@ -162,7 +169,17 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface{
 		val rec = graph.getCellBounds(mapDataGraph.get(task));
 		for(i:0 ..<task.inputs.size){
 		var data=task.inputs.get(i);
-		val v=graph.insertVertex(this.parent, null, data, rec.centerX-(task.inputs.size-i+1)*20, rec.centerY+30, data.parameter.name.length()*20+10, 20,styleIN+mxConstants.STYLE_STROKECOLOR+"="+"#ffffff;");
+		val v=graph.insertVertex(this.parent, null, data, rec.centerX-(task.inputs.size-i+1)*25, rec.centerY+30, data.parameter.name.length()*20, 15,styleServiceInput);
+		mapDataGraph.put(data,v);
+		}
+	}
+	
+	def drawOutputs(Task task) {
+		
+		val rec = graph.getCellBounds(mapDataGraph.get(task));
+		for(i:0 ..<task.outputs.size){
+		var data=task.outputs.get(i);
+		val v=graph.insertVertex(this.parent, null, data, rec.centerX+(i+1)*25, rec.centerY+30, data.parameter.name.length()*20,15,styleServiceOutput);
 		mapDataGraph.put(data,v);
 		}
 	}
