@@ -15,8 +15,12 @@ import fr.inria.gag.model.specification.GAG;
 import fr.inria.gag.model.specification.RuntimeData;
 import fr.inria.gag.specification.aspect.GAGAspect;
 import fr.inria.gag.specification.aspect.OutputInterface;
+import fr.inria.gag.util.Console;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.swing.JPanel;
@@ -24,7 +28,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
-public class GAGGraphAspect extends GAGAspect implements OutputInterface {
+public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseListener {
   private CustomGraphComponent graphComponent;
   
   private CustomGraph graph;
@@ -36,6 +40,8 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
   private mxHierarchicalLayout layoutForParent;
   
   private Hashtable<Object, Object> mapDataGraph;
+  
+  private Hashtable<Object, Object> mapGraphData;
   
   public static String style = (mxConstants.STYLE_FILLCOLOR + "=#ffffff");
   
@@ -65,15 +71,21 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
   
   private Object parent;
   
+  private ChooseRuleDialog dialog;
+  
   public GAGGraphAspect(final GAG g) {
     super(g);
     Hashtable<Object, Object> _hashtable = new Hashtable<Object, Object>();
     this.mapDataGraph = _hashtable;
+    Hashtable<Object, Object> _hashtable_1 = new Hashtable<Object, Object>();
+    this.mapGraphData = _hashtable_1;
   }
   
   public GAGGraphAspect() {
     Hashtable<Object, Object> _hashtable = new Hashtable<Object, Object>();
     this.mapDataGraph = _hashtable;
+    Hashtable<Object, Object> _hashtable_1 = new Hashtable<Object, Object>();
+    this.mapGraphData = _hashtable_1;
   }
   
   public CustomGraphComponent getGraphComponent() {
@@ -181,6 +193,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
     this.graphComponent.refresh();
     this.graphComponent.setLayoutStructure(this);
     this.graphComponent.setGAG(this);
+    this.graphComponent.getGraphControl().addMouseListener(this);
     this.panel.add(this.graphComponent);
     this.panel.updateUI();
     this.panel.validate();
@@ -206,6 +219,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
         int _multiply_1 = (_length * 20);
         final Object v = this.graph.insertVertex(this.parent, null, data, _minus_1, _plus_1, _multiply_1, 15, GAGGraphAspect.styleServiceInput);
         this.mapDataGraph.put(data, v);
+        this.mapGraphData.put(v, data);
       }
     }
   }
@@ -225,6 +239,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
         int _multiply = (_length * 20);
         final Object v = this.graph.insertVertex(this.parent, null, data, _plus, _plus_1, _multiply, 15, GAGGraphAspect.styleServiceOutput);
         this.mapDataGraph.put(data, v);
+        this.mapGraphData.put(v, data);
       }
     }
   }
@@ -242,6 +257,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
     }
     Object v = this.graph.insertVertex(this.parent, null, task, 400, 10, _plus, 50, _xifexpression);
     this.mapDataGraph.put(task, v);
+    this.mapGraphData.put(v, task);
     boolean _notEquals = (!Objects.equal(parent, null));
     if (_notEquals) {
       this.graph.insertEdge(this.parent, null, "", this.mapDataGraph.get(parent), v, GAGGraphAspect.styleArrowSun);
@@ -270,6 +286,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
     int _plus_1 = (_multiply + 20);
     final Object v = this.graph.insertVertex(this.parent, null, data, _minus, _plus, _plus_1, 20, (((GAGGraphAspect.styleIN + mxConstants.STYLE_STROKECOLOR) + "=") + "#ffffff;"));
     this.mapDataGraph.put(data, v);
+    this.mapGraphData.put(v, data);
   }
   
   public void proceedArtefact() {
@@ -282,5 +299,60 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface {
   public void update(final GAG g) {
     this.setConfiguration(g.getConfiguration());
     this.dispose();
+  }
+  
+  public void mouseClicked(final MouseEvent e) {
+  }
+  
+  public void mouseEntered(final MouseEvent e) {
+  }
+  
+  public void mouseExited(final MouseEvent e) {
+  }
+  
+  public void mousePressed(final MouseEvent e) {
+  }
+  
+  public void mouseReleased(final MouseEvent e) {
+    Object cell = this.graphComponent.getCellAt(e.getX(), e.getY());
+    if ((cell != null)) {
+      Object data = this.mapGraphData.get(cell);
+      boolean _notEquals = (!Objects.equal(data, null));
+      if (_notEquals) {
+        if ((data instanceof Task)) {
+          Console.debug("clicking on task");
+          int _x = e.getX();
+          String _plus = ("(X:" + Integer.valueOf(_x));
+          String _plus_1 = (_plus + ", Y:");
+          int _y = e.getY();
+          String _plus_2 = (_plus_1 + Integer.valueOf(_y));
+          String _plus_3 = (_plus_2 + ")");
+          Console.debug(_plus_3);
+          if ((this.dialog != null)) {
+            this.dialog.dispose();
+          }
+          ChooseRuleDialog _chooseRuleDialog = new ChooseRuleDialog();
+          this.dialog = _chooseRuleDialog;
+          final Point location = e.getLocationOnScreen();
+          this.dialog.setBounds(location.x, location.y, 200, 200);
+          this.dialog.setIconImage(null);
+          this.dialog.setGraph(this);
+          this.dialog.setRulesForTask(((Task) data));
+          this.dialog.setVisible(true);
+        } else {
+          if ((this.dialog != null)) {
+            this.dialog.dispose();
+          }
+        }
+      } else {
+        if ((this.dialog != null)) {
+          this.dialog.dispose();
+        }
+      }
+    } else {
+      if ((this.dialog != null)) {
+        this.dialog.dispose();
+      }
+    }
   }
 }

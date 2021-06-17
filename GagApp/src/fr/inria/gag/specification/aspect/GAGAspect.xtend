@@ -167,6 +167,19 @@ class GAGAspect extends GAG{
 		
 
 	}
+	def ArrayList<DecompositionRule> getApplicablesRules(Task t){
+		var applicableRules =new ArrayList<DecompositionRule> ;
+		for (i : 0 ..< t.service.rules.size) {
+			val element = t.service.rules.get(i);
+			var guard =element.guard;
+			if(guard ==null || guard.isApplicable(t)){
+				applicableRules.add(element);
+			}
+			
+		
+		}
+		return applicableRules;
+	}
 	
 
 	def ArrayList<Task> getOpenTask(Task root) {

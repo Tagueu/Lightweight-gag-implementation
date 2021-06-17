@@ -213,6 +213,22 @@ public class GAGAspect extends GAG {
     }
   }
   
+  public ArrayList<DecompositionRule> getApplicablesRules(final Task t) {
+    ArrayList<DecompositionRule> applicableRules = new ArrayList<DecompositionRule>();
+    int _size = t.getService().getRules().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        final DecompositionRule element = t.getService().getRules().get((i).intValue());
+        Guard guard = element.getGuard();
+        if ((Objects.equal(guard, null) || this.isApplicable(guard, t))) {
+          applicableRules.add(element);
+        }
+      }
+    }
+    return applicableRules;
+  }
+  
   public ArrayList<Task> getOpenTask(final Task root) {
     final ArrayList<Task> openTasks = new ArrayList<Task>();
     boolean _isOpen = root.isOpen();
