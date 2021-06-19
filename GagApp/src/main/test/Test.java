@@ -86,20 +86,21 @@ public class Test {
 		JAXBContext ctx;
 		try {
 			ctx = JAXBContext.newInstance(GAG.class,Configuration.class,IdExpression.class, FunctionExpression.class);
-
+			
 			Marshaller msh = ctx.createMarshaller();
 			Unmarshaller umsh = ctx.createUnmarshaller();
+			/*
 			msh.marshal(g, new File("C:\\Users\\TAGUEU\\Desktop\\file.xml"));
 			//GAG mygag= (GAG) umsh.unmarshal(new File("C:\\Users\\TAGUEU\\Desktop\\file.xml"));
 			//msh.marshal(mygag, new File("C:\\Users\\TAGUEU\\Desktop\\file1.xml"));
-			
+			*/
 			GAG mygag= (GAG) umsh.unmarshal(new File("gag-specification\\gag.xml"));
 			GAGAspect gasp=new GAGAspect(mygag);
 			ComponentIHM window = new ComponentIHM();
 			window.setVisible(true);
 			window.disposeTheGraph(mygag);
 			window.setTitle("My Component");
-			gasp.runWithExternalOuputInterface(window.getGraphLayout());
+			//gasp.runWithExternalOuputInterface(window.getGraphLayout());
 		} catch (JAXBException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

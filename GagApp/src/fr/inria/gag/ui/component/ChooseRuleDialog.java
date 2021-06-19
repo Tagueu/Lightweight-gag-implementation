@@ -95,7 +95,7 @@ public class ChooseRuleDialog extends JDialog {
 		for(int k=0;k<rules.size();k++) {
 			DecompositionRule r=rules.get(k);
 			JLabel label = new JLabel(r.getName());
-			JButton activer =new JButton("Activer");
+			JButton activer =new JButton("Activate");
 			activer.addActionListener(new ActionListener() {
 				
 				@Override

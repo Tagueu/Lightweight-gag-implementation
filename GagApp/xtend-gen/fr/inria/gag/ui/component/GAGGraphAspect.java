@@ -308,6 +308,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseL
   public void update(final GAG g) {
     this.setConfiguration(g.getConfiguration());
     this.dispose();
+    this.windowContainer.updateUI();
   }
   
   public void mouseClicked(final MouseEvent e) {

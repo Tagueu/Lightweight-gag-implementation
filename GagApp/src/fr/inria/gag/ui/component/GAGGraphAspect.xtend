@@ -54,8 +54,10 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
     	super(g);
     	this.mapDataGraph=new Hashtable<Object,Object>
     	this.mapGraphData=new Hashtable<Object,Object>
+    	//this.configuration= new Configuration;
     }
     new(){
+    	//this.configuration= new Configuration;
     	this.mapDataGraph=new Hashtable<Object,Object>
     	this.mapGraphData=new Hashtable<Object,Object>
     }
@@ -241,7 +243,9 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 	
 	override update(GAG g) {
 		this.configuration=g.configuration
+		
 		this.dispose();
+		this.windowContainer.updateUI;
 	}
 	
 	override mouseClicked(MouseEvent e) {

@@ -90,7 +90,7 @@ public class GAGAspect extends GAG {
     Console.debug("Exécution terminée !");
   }
   
-  public void chooseTheAxiom() {
+  public ArrayList<Service> getAxioms() {
     final ArrayList<Service> services = this.getServices();
     final ArrayList<Service> axioms = new ArrayList<Service>();
     int _size = services.size();
@@ -104,15 +104,21 @@ public class GAGAspect extends GAG {
         }
       }
     }
+    return axioms;
+  }
+  
+  public void chooseTheAxiom() {
+    final ArrayList<Service> services = this.getServices();
+    final ArrayList<Service> axioms = this.getAxioms();
     Console.debug("Veuillez choisir le service axiome de démarrage parmi les services suivants : ");
     String txtAf = "";
-    int _size_1 = axioms.size();
-    ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
-    for (final Integer i_1 : _doubleDotLessThan_1) {
+    int _size = axioms.size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
       {
-        Service _get = axioms.get((i_1).intValue());
+        Service _get = axioms.get((i).intValue());
         final Service element = ((Service) _get);
-        String _plus = (Integer.valueOf(((i_1).intValue() + 1)) + "- ");
+        String _plus = (Integer.valueOf(((i).intValue() + 1)) + "- ");
         String _name = element.getName();
         String _plus_1 = (_plus + _name);
         Console.debug(_plus_1);
@@ -124,37 +130,69 @@ public class GAGAspect extends GAG {
     final Service serviceChoice = ((Service) _get);
     RuntimeData _configuration = this.getConfiguration();
     final Configuration conf = ((Configuration) _configuration);
-    Task _task = new Task();
-    conf.setRoot(_task);
-    Task _root = conf.getRoot();
-    _root.setService(serviceChoice);
-    Console.debug("Veuillez fournir les valeurs des entrées de l\'axiome ");
-    int _size_2 = conf.getRoot().getService().getInputParameters().size();
-    ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_2, true);
-    for (final Integer i_2 : _doubleDotLessThan_2) {
+    conf.setRoot(this.createRootTask(serviceChoice));
+  }
+  
+  public Task createRootTask(final Service serviceChoice, final ArrayList<Object> inputParams) {
+    Task root = new Task();
+    root.setService(serviceChoice);
+    int _size = root.getService().getInputParameters().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
       {
         Data data = new Data();
-        data.setParameter(conf.getRoot().getService().getInputParameters().get((i_2).intValue()));
+        data.setParameter(root.getService().getInputParameters().get((i).intValue()));
+        Object _get = inputParams.get((i).intValue());
+        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue(_get);
+        data.setValue(_encapsulatedValue);
+        root.getInputs().add(data);
+      }
+    }
+    int _size_1 = root.getService().getOutputParameters().size();
+    ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+    for (final Integer i_1 : _doubleDotLessThan_1) {
+      {
+        Data data = new Data();
+        data.setParameter(root.getService().getOutputParameters().get((i_1).intValue()));
+        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue();
+        data.setValue(_encapsulatedValue);
+        root.getOutputs().add(data);
+      }
+    }
+    return root;
+  }
+  
+  public Task createRootTask(final Service serviceChoice) {
+    Task root = new Task();
+    root.setService(serviceChoice);
+    Console.debug("Veuillez fournir les valeurs des entrées de l\'axiome ");
+    int _size = root.getService().getInputParameters().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        Data data = new Data();
+        data.setParameter(root.getService().getInputParameters().get((i).intValue()));
         String _name = data.getParameter().getName();
         String _plus = ("Veuillez entrer la valeur du paramètre " + _name);
         Console.debug(_plus);
         String _readConsoleLine = Console.readConsoleLine("");
         EncapsulatedValue _encapsulatedValue = new EncapsulatedValue(_readConsoleLine);
         data.setValue(_encapsulatedValue);
-        conf.getRoot().getInputs().add(data);
+        root.getInputs().add(data);
       }
     }
-    int _size_3 = conf.getRoot().getService().getOutputParameters().size();
-    ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_3, true);
-    for (final Integer i_3 : _doubleDotLessThan_3) {
+    int _size_1 = root.getService().getOutputParameters().size();
+    ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+    for (final Integer i_1 : _doubleDotLessThan_1) {
       {
         Data data = new Data();
-        data.setParameter(conf.getRoot().getService().getOutputParameters().get((i_3).intValue()));
+        data.setParameter(root.getService().getOutputParameters().get((i_1).intValue()));
         EncapsulatedValue _encapsulatedValue = new EncapsulatedValue();
         data.setValue(_encapsulatedValue);
-        conf.getRoot().getOutputs().add(data);
+        root.getOutputs().add(data);
       }
     }
+    return root;
   }
   
   public Task chooseTask(final ArrayList<Task> openTasks) {

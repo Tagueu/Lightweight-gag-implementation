@@ -84,15 +84,22 @@ class GAGAspect extends GAG{
 	}
 
 	
+	def ArrayList<Service> getAxioms() {
+		val services = this.services;
+		val axioms = new ArrayList<Service>();
+			for (i : 0 ..< services.size) {
+				val element = services.get(i)
+				if (element.isAxiom) {
+					axioms.add(services.get(i));
+				}
+			}
+		return axioms;
+			
+		}
+	
 	def void chooseTheAxiom() {
 		val services = this.services;
-		val axioms = new ArrayList();
-		for (i : 0 ..< services.size) {
-			val element = services.get(i)
-			if (element.isAxiom) {
-				axioms.add(services.get(i));
-			}
-		}
+		val axioms = this.axioms;
 		Console.debug("Veuillez choisir le service axiome de démarrage parmi les services suivants : ");
 		var txtAf = "";
 		for (i : 0 ..< axioms.size) {
@@ -105,22 +112,46 @@ class GAGAspect extends GAG{
 		val id = Integer.parseInt(choice);
 		val serviceChoice = axioms.get(id - 1) as Service;
 		val conf = this.configuration as Configuration
-		conf.root = new Task();
-		conf.root.service = serviceChoice;
-		Console.debug("Veuillez fournir les valeurs des entrées de l'axiome ");
-		for (i : 0 ..< conf.root.service.inputParameters.size) {
+		conf.root= createRootTask(serviceChoice)
+	}
+	
+	def Task createRootTask(Service serviceChoice, ArrayList<Object> inputParams){
+		var root = new Task();
+		root.service = serviceChoice;
+		for (i : 0 ..< root.service.inputParameters.size) {
 			var data = new Data();
-			data.parameter = conf.root.service.inputParameters.get(i);
+			data.parameter = root.service.inputParameters.get(i);
+			data.value = new EncapsulatedValue(inputParams.get(i));
+			root.inputs.add(data);
+		}
+		for (i : 0 ..< root.service.outputParameters.size) {
+			var data = new Data();
+			data.parameter = root.service.outputParameters.get(i);
+			data.value = new EncapsulatedValue;
+			root.outputs.add(data);
+		}
+		return root;
+	}
+	
+	
+	def Task createRootTask(Service serviceChoice){
+		var root = new Task();
+		root.service = serviceChoice;
+		Console.debug("Veuillez fournir les valeurs des entrées de l'axiome ");
+		for (i : 0 ..< root.service.inputParameters.size) {
+			var data = new Data();
+			data.parameter = root.service.inputParameters.get(i);
 			Console.debug("Veuillez entrer la valeur du paramètre " + data.parameter.name);
 			data.value = new EncapsulatedValue(Console.readConsoleLine(""));
-			conf.root.inputs.add(data);
+			root.inputs.add(data);
 		}
-		for (i : 0 ..< conf.root.service.outputParameters.size) {
+		for (i : 0 ..< root.service.outputParameters.size) {
 			var data = new Data();
-			data.parameter = conf.root.service.outputParameters.get(i);
+			data.parameter = root.service.outputParameters.get(i);
 			data.value = new EncapsulatedValue;
-			conf.root.outputs.add(data);
+			root.outputs.add(data);
 		}
+		return root;
 	}
 
 	def Task chooseTask(ArrayList<Task> openTasks) {

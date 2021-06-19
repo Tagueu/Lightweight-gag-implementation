@@ -24,6 +24,8 @@ import fr.inria.gag.util.UIUtil;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +38,7 @@ public class ComponentIHM {
 	private JPanel panelConfigurationGraph;
 	private GAGGraphAspect graphLayout;
 	private JPanel panelConfValueContent;
+	private JButton btnStart;
 
 	/**
 	 * Launch the application.
@@ -100,7 +103,7 @@ public class ComponentIHM {
 		JButton btnSave = new JButton("Save");
 		panelBtn.add(btnSave);
 		
-		JButton btnStart = new JButton("Start");
+		btnStart = new JButton("Start");
 		panelBtn.add(btnStart);
 		
 		JButton btnPause = new JButton("Pause");
@@ -210,6 +213,19 @@ public class ComponentIHM {
 	
 	public void setVisible(boolean visible) {
 		this.frame.setVisible(visible);
+		
+		//add listener event;
+		this.btnStart.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ChooseAxiomDialog dialog = new ChooseAxiomDialog();
+				dialog.setGag(graphLayout);
+				dialog.showUI();
+			}
+			
+		});
 	}
 
 	public GAGGraphAspect getGraphLayout() {
