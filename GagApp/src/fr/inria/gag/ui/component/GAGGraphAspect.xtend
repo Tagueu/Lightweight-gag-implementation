@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent
 class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 	
 	private CustomGraphComponent graphComponent;
+	private ComponentIHM windowContainer;
     private CustomGraph graph;
     private boolean pageView;
     private JPanel panel;
@@ -132,7 +133,8 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 	        
 	        // put inputs and outputs;
 	        if(this.configuration!=null){
-	        val servicesOpen = this.getOpenTask((this.configuration as Configuration).root);
+	        	 val servicesOpen = this.getAllTasks(null);
+	       // val servicesOpen = this.getOpenTask((this.configuration as Configuration).root);
 	        for(i:0 ..<servicesOpen.size){
 	        	servicesOpen.get(i).drawInputs();
 	        	servicesOpen.get(i).drawOutputs();
@@ -230,6 +232,13 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 		return "";
 	}
 	
+	def ComponentIHM getWindowContainer(){
+		return this.windowContainer;
+	}
+	def void setWindowContainer(ComponentIHM ihm){
+		this.windowContainer=ihm;
+	}
+	
 	override update(GAG g) {
 		this.configuration=g.configuration
 		this.dispose();
@@ -276,5 +285,7 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 					if(this.dialog!==null)this.dialog.dispose
 				}
 	}
+	
+	
 	
 }

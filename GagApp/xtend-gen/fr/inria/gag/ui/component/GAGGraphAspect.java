@@ -31,6 +31,8 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseListener {
   private CustomGraphComponent graphComponent;
   
+  private ComponentIHM windowContainer;
+  
   private CustomGraph graph;
   
   private boolean pageView;
@@ -166,8 +168,7 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseL
     RuntimeData _configuration = this.getConfiguration();
     boolean _notEquals = (!Objects.equal(_configuration, null));
     if (_notEquals) {
-      RuntimeData _configuration_1 = this.getConfiguration();
-      final ArrayList<Task> servicesOpen = this.getOpenTask(((Configuration) _configuration_1).getRoot());
+      final ArrayList<Task> servicesOpen = this.getAllTasks(null);
       int _size = servicesOpen.size();
       ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
       for (final Integer i : _doubleDotLessThan) {
@@ -294,6 +295,14 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseL
   
   public String getTermColor() {
     return "";
+  }
+  
+  public ComponentIHM getWindowContainer() {
+    return this.windowContainer;
+  }
+  
+  public void setWindowContainer(final ComponentIHM ihm) {
+    this.windowContainer = ihm;
   }
   
   public void update(final GAG g) {

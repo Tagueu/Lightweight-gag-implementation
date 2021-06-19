@@ -14,20 +14,28 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import fr.inria.gag.model.specification.GAG;
+import fr.inria.gag.model.configuration.Configuration;
+import fr.inria.gag.model.configuration.Data;
+import fr.inria.gag.model.configuration.Task;
 import fr.inria.gag.specification.aspect.GAGAspect;
+import fr.inria.gag.util.EncapsulatedValue;
+import fr.inria.gag.util.UIUtil;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
-
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class ComponentIHM {
 
 	private JFrame frame;
 	private JPanel panelConfigurationGraph;
 	private GAGGraphAspect graphLayout;
+	private JPanel panelConfValueContent;
 
 	/**
 	 * Launch the application.
@@ -119,6 +127,9 @@ public class ComponentIHM {
 		JLabel lblConfigurationValues = new JLabel("Configuration Values");
 		panelConValueTitle.add(lblConfigurationValues);
 		
+		panelConfValueContent = new JPanel();
+		panelConfValue.add(panelConfValueContent, BorderLayout.CENTER);
+		
 		JPanel panelInputs = new JPanel();
 		panelMetaData.add(panelInputs);
 		panelInputs.setLayout(new BorderLayout(0, 0));
@@ -155,7 +166,46 @@ public class ComponentIHM {
 	
 	public void disposeTheGraph(GAG gag) {
 		this.graphLayout =new GAGGraphAspect(gag);
+		this.graphLayout.setWindowContainer(this);
 		this.graphLayout.dispose(panelConfigurationGraph);
+	}
+	
+	public void updateUI() {
+		
+		this.updateConfigurationValuePanel();
+	}
+	
+	public void updateConfigurationValuePanel() {
+		
+		ArrayList<Task> allTasks = this.graphLayout.getAllTasks(null);
+		// count the line numbers
+		int rows=0;
+		for(int i=0;i<allTasks.size();i++) {
+			Task el = allTasks.get(i);
+			rows+=el.getInputs().size()+el.getOutputs().size();
+		}
+		JPanel[][] panes = UIUtil.layout(rows, 3, panelConfValueContent);
+		int cpt=0;
+		for(int i=0;i<allTasks.size();i++) {
+			Task el = allTasks.get(i);
+			for(int k=0;k<el.getInputs().size();k++) {
+				Data in = el.getInputs().get(k);
+				panes[cpt][0].add( new JLabel(el.getService().getName()+"."+in.getParameter().getName()));
+				panes[cpt][1].add( new JLabel("="));
+				EncapsulatedValue ecD= (EncapsulatedValue)in.getValue();
+				panes[cpt][2].add( new JLabel((ecD.isNull())?"?":ecD.getValue().toString()) );
+				cpt++;
+			}
+			for(int k=0;k<el.getOutputs().size();k++) {
+				Data out = el.getOutputs().get(k);
+				panes[cpt][0].add( new JLabel(el.getService().getName()+"."+out.getParameter().getName()));
+				panes[cpt][1].add( new JLabel("="));
+				EncapsulatedValue ecD= (EncapsulatedValue)out.getValue();
+				panes[cpt][2].add( new JLabel((ecD.isNull())?"?":ecD.getValue().toString()) );
+				cpt++;
+			}
+		}
+		panelConfValueContent.updateUI();
 	}
 	
 	public void setVisible(boolean visible) {

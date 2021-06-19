@@ -24,6 +24,7 @@ import com.mxgraph.view.mxGraph;
 import fr.inria.gag.model.configuration.Data;
 import fr.inria.gag.model.configuration.Task;
 import fr.inria.gag.model.specification.GAG;
+import fr.inria.gag.util.EncapsulatedValue;
 
 
 /**
@@ -162,26 +163,13 @@ private GAG gag;
 		{
 			Object value = ((mxCell) cell).getValue();
 			if(value instanceof Data) {
-				//Term t= (Term) value;
-				ArrayList subs=new ArrayList();
-				if(subs.isEmpty()){
-				tip+="<p>";
-				 tip+="<pre>";
-				 //tip+=t.htmlJGgraphx();
-				 tip+="</pre>";
-				tip+="</p>";
-				}else{
-					tip+="<p>";
-					 tip+="<br/>";
-					 tip+="<b><u>Subscribers</u></b><br/>";
-					 tip+="<ul>";
-					 for(int i=0;i<subs.size();i++){
-						 //tip+="<li>"+subs.get(i).getLocation()+"</li>";
-					 }
-					 tip+="</ul>";
-					 tip+="</br/>";
-					tip+="</p>";
-				}
+				EncapsulatedValue ecD= (EncapsulatedValue) ((Data)value).getValue();
+				String stV = (ecD.isNull())?"?":ecD.getValue().toString();
+				//tip+="<p>";
+				tip+="<h4>";
+				tip+=stV;
+				tip+="</h4>";
+				//tip+="</p>";
 			}
 		}
        tip += "</html>";

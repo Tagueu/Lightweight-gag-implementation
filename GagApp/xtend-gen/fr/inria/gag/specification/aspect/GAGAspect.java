@@ -248,6 +248,26 @@ public class GAGAspect extends GAG {
     return openTasks;
   }
   
+  public ArrayList<Task> getAllTasks(final Task root) {
+    Task myroot = root;
+    if ((root == null)) {
+      RuntimeData _configuration = this.getConfiguration();
+      myroot = ((Configuration) _configuration).getRoot();
+    }
+    final ArrayList<Task> allTasks = new ArrayList<Task>();
+    allTasks.add(myroot);
+    int _size = myroot.getSubTasks().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        final Task element = myroot.getSubTasks().get((i).intValue());
+        final ArrayList<Task> subAllTasks = this.getAllTasks(element);
+        allTasks.addAll(subAllTasks);
+      }
+    }
+    return allTasks;
+  }
+  
   public void applyRule(final Task t, final DecompositionRule r) {
     t.setAppliedRule(r.getName());
     t.setOpen(false);

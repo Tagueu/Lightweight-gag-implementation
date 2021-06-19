@@ -195,6 +195,24 @@ class GAGAspect extends GAG{
 		}
 		return openTasks;
 	}
+	
+	def ArrayList<Task> getAllTasks(Task root) {
+		var myroot=root;
+		if(root===null){
+			myroot=(this.configuration as Configuration).root;
+		}
+		val allTasks = new ArrayList<Task>();
+		
+			allTasks.add(myroot);
+		
+			for (i : 0 ..< myroot.subTasks.size) {
+				val element = myroot.subTasks.get(i)
+				val subAllTasks = getAllTasks( element);
+				allTasks.addAll(subAllTasks);
+			}
+		
+		return allTasks;
+	}
 
 
 	def void applyRule(Task t, DecompositionRule r) {

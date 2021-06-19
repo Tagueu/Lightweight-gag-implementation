@@ -103,6 +103,7 @@ public class ChooseRuleDialog extends JDialog {
 					// TODO Auto-generated method stub
 					graph.applyRule(task, r);
 					graph.update(graph);
+					graph.getWindowContainer().updateUI();
 					refOnMe.dispose();
 				}
 			});
