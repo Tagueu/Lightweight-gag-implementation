@@ -15,4 +15,5 @@ class ServiceAspect extends Service {
 		this.outputParameters = s.outputParameters;
 		this.rules= s.rules;
 	}
+	
 }

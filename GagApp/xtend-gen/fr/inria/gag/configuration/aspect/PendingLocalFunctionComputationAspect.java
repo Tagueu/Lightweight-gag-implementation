@@ -87,4 +87,26 @@ public class PendingLocalFunctionComputationAspect extends PendingLocalFunctionC
     }
     return res;
   }
+  
+  public String prettyPrint() {
+    String _name = this.getFunctionDeclaration().getName();
+    String result = (_name + "(");
+    int _size = this.getActualParameters().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        String _result = result;
+        String _name_1 = this.getActualParameters().get((i).intValue()).getName();
+        result = (_result + _name_1);
+        int _size_1 = this.getActualParameters().size();
+        int _minus = (_size_1 - 1);
+        boolean _notEquals = ((i).intValue() != _minus);
+        if (_notEquals) {
+          String _result_1 = result;
+          result = (_result_1 + ",");
+        }
+      }
+    }
+    return result;
+  }
 }

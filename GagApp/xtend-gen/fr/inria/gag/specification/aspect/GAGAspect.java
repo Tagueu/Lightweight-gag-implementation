@@ -143,8 +143,9 @@ public class GAGAspect extends GAG {
         Data data = new Data();
         data.setParameter(root.getService().getInputParameters().get((i).intValue()));
         Object _get = inputParams.get((i).intValue());
-        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue(_get);
-        data.setValue(_encapsulatedValue);
+        final EncapsulatedValue ecD = new EncapsulatedValue(_get);
+        ecD.setContainerRef(data);
+        data.setValue(ecD);
         root.getInputs().add(data);
       }
     }
@@ -154,8 +155,9 @@ public class GAGAspect extends GAG {
       {
         Data data = new Data();
         data.setParameter(root.getService().getOutputParameters().get((i_1).intValue()));
-        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue();
-        data.setValue(_encapsulatedValue);
+        final EncapsulatedValue ecD = new EncapsulatedValue();
+        ecD.setContainerRef(data);
+        data.setValue(ecD);
         root.getOutputs().add(data);
       }
     }

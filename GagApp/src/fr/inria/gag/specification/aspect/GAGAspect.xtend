@@ -121,13 +121,18 @@ class GAGAspect extends GAG{
 		for (i : 0 ..< root.service.inputParameters.size) {
 			var data = new Data();
 			data.parameter = root.service.inputParameters.get(i);
-			data.value = new EncapsulatedValue(inputParams.get(i));
+			
+			val ecD = new EncapsulatedValue(inputParams.get(i));
+			ecD.containerRef=data;
+			data.value = ecD;
 			root.inputs.add(data);
 		}
 		for (i : 0 ..< root.service.outputParameters.size) {
 			var data = new Data();
 			data.parameter = root.service.outputParameters.get(i);
-			data.value = new EncapsulatedValue;
+			val ecD= new EncapsulatedValue;
+			ecD.containerRef=data;
+			data.value = ecD;
 			root.outputs.add(data);
 		}
 		return root;

@@ -94,6 +94,50 @@ public class TaskAspect extends Task {
     return conf;
   }
   
+  public String prettyPrint() {
+    String result = "(";
+    int _size = this.getOutputs().size();
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        String _result = result;
+        String _name = this.getOutputs().get((i).intValue()).getName();
+        result = (_result + _name);
+        int _size_1 = this.getOutputs().size();
+        int _minus = (_size_1 - 1);
+        boolean _notEquals = ((i).intValue() != _minus);
+        if (_notEquals) {
+          String _result_1 = result;
+          result = (_result_1 + ",");
+        }
+      }
+    }
+    String _result = result;
+    String _name = this.getService().getName();
+    String _plus = (") = " + _name);
+    String _plus_1 = (_plus + "(");
+    result = (_result + _plus_1);
+    int _size_1 = this.getInputs().size();
+    ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+    for (final Integer i_1 : _doubleDotLessThan_1) {
+      {
+        String _result_1 = result;
+        String _name_1 = this.getInputs().get((i_1).intValue()).getName();
+        result = (_result_1 + _name_1);
+        int _size_2 = this.getInputs().size();
+        int _minus = (_size_2 - 1);
+        boolean _notEquals = ((i_1).intValue() != _minus);
+        if (_notEquals) {
+          String _result_2 = result;
+          result = (_result_2 + ",");
+        }
+      }
+    }
+    String _result_1 = result;
+    result = (_result_1 + ")");
+    return result;
+  }
+  
   public String print(final Task task) {
     return new TaskAspect(task).print();
   }

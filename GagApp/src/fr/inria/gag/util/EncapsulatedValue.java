@@ -38,7 +38,8 @@ public class EncapsulatedValue {
 
 	public void setValue(Object value) {
 		this.value = value;
-		this.next = null ;
+		//this.next = null ; putting the next to null when setting value is optimal for execution
+		// but not for debug 
 	}
 	
 	public boolean isNull() {
@@ -55,12 +56,13 @@ public class EncapsulatedValue {
 			PendingLocalFunctionComputation func=null;
 			for(int i=0;i<conf.getPendingLocalComputations().size();i++) {
 				PendingLocalFunctionComputation el = conf.getPendingLocalComputations().get(i);
-				if(el.getDataToCompute()==d) {
+				if(el.getDataToCompute().equals(d)) {
 					func=el;
 					break;
 				}
-				result=func;
+				
 			}
+			result=func;
 			
 		}else {
 			result=ecD.getAssociatedData();
@@ -83,8 +85,10 @@ public class EncapsulatedValue {
 	
 	public Data getAssociatedData() {
 		EncapsulatedValue myNext=next;
-		
-		return myNext.containerRef;
+		if(myNext!=null) {
+			return myNext.containerRef;
+		}
+		return null;
 	}
 	
 	

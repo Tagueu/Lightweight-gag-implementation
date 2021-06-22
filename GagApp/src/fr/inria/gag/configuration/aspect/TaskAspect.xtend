@@ -53,6 +53,28 @@ class TaskAspect extends Task{
 	}
 	
 	
+	// not really necessary except for debug purpose
+	def String prettyPrint(){
+		var result="(";
+		for(i:0 ..<outputs.size){
+			result+=outputs.get(i).name;
+			if(i!=outputs.size-1){
+				result+=",";
+			}
+		}
+		result+=") = "+service.name+"(";
+		for(i:0 ..<inputs.size){
+			result+=inputs.get(i).name;
+			if(i!=inputs.size-1){
+				result+=",";
+			}
+		}
+		result+=")";
+		
+		return result;
+		
+	}
+	
 	// extention methods
 	def String print(Task task) {
 		return new TaskAspect(task).print();

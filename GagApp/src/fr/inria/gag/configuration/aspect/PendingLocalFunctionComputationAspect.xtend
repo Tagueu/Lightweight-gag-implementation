@@ -64,4 +64,16 @@ class PendingLocalFunctionComputationAspect extends PendingLocalFunctionComputat
 	
 	}
 	
+	// just for debug purpose
+	def String prettyPrint(){
+		var result=functionDeclaration.name+"(";
+		for(i:0 ..<actualParameters.size){
+			result+=actualParameters.get(i).name;
+			if(i!=(actualParameters.size-1)){
+				result+=",";
+			}
+		}
+		return result;
+	}
+	
 }

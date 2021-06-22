@@ -14,8 +14,11 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import fr.inria.gag.model.specification.GAG;
+import fr.inria.gag.configuration.aspect.PendingLocalFunctionComputationAspect;
+import fr.inria.gag.configuration.aspect.TaskAspect;
 import fr.inria.gag.model.configuration.Configuration;
 import fr.inria.gag.model.configuration.Data;
+import fr.inria.gag.model.configuration.PendingLocalFunctionComputation;
 import fr.inria.gag.model.configuration.Task;
 import fr.inria.gag.specification.aspect.GAGAspect;
 import fr.inria.gag.util.EncapsulatedValue;
@@ -71,176 +74,160 @@ public class ComponentIHM {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 703, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		 try {
-	            //UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
-			 UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
-	        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-	            Logger.getLogger(ComponentIHM.class.getName()).log(Level.SEVERE, null, ex);
-	        } catch (UnsupportedLookAndFeelException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+
+		try {
+			// UIManager.setLookAndFeel("de.javasoft.plaf.synthetica.SyntheticaWhiteVisionLookAndFeel");
+			UIManager.setLookAndFeel("com.alee.laf.WebLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+			Logger.getLogger(ComponentIHM.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
-		
+
 		JMenu fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		
+
 		JMenuItem exitMenuItem = new JMenuItem("exit");
 		fileMenu.add(exitMenuItem);
-		
+
 		JMenu toolMenu = new JMenu("Tool");
 		menuBar.add(toolMenu);
-		
+
 		JMenu aboutMenu = new JMenu("About");
 		menuBar.add(aboutMenu);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelBtn = new JPanel();
 		frame.getContentPane().add(panelBtn, BorderLayout.NORTH);
-		
+
 		JButton btnSave = new JButton("Save");
 		panelBtn.add(btnSave);
-		
+
 		btnStart = new JButton("Start");
 		panelBtn.add(btnStart);
-		
+
 		JButton btnPause = new JButton("Pause");
 		panelBtn.add(btnPause);
-		
+
 		JButton btnResume = new JButton("Resume");
 		panelBtn.add(btnResume);
-		
+
 		JButton btnStop = new JButton("Stop");
 		panelBtn.add(btnStop);
-		
+
 		JPanel panelMetaData = new JPanel();
 		frame.getContentPane().add(panelMetaData, BorderLayout.SOUTH);
-		panelMetaData.setPreferredSize(new Dimension(100,159));
+		panelMetaData.setPreferredSize(new Dimension(100, 159));
 		panelMetaData.setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 		JPanel panelConfValue = new JPanel();
 		panelMetaData.add(panelConfValue);
 		panelConfValue.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelConValueTitle = new JPanel();
 		panelConfValue.add(panelConValueTitle, BorderLayout.NORTH);
-		
+
 		JLabel lblConfigurationValues = new JLabel("Configuration Values");
 		panelConValueTitle.add(lblConfigurationValues);
-		
+
 		panelConfValueContent = new JPanel();
 		panelConfValue.add(panelConfValueContent, BorderLayout.CENTER);
-		
+
 		JPanel panelInputs = new JPanel();
 		panelMetaData.add(panelInputs);
 		panelInputs.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelInputValueTitle = new JPanel();
 		panelInputs.add(panelInputValueTitle, BorderLayout.NORTH);
-		
+
 		JLabel lblInputVariables = new JLabel("Configuration Pending Computations");
 		panelInputValueTitle.add(lblInputVariables);
-		
+
 		panelConfigurationEquations = new JPanel();
 		panelInputs.add(panelConfigurationEquations, BorderLayout.CENTER);
-		
+
 		JPanel panelOutputs = new JPanel();
 		panelMetaData.add(panelOutputs);
 		panelOutputs.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelOutputsTitle = new JPanel();
 		panelOutputs.add(panelOutputsTitle, BorderLayout.NORTH);
-		
+
 		JLabel lblOutputTitle = new JLabel("Outputs / Subscriptions");
 		panelOutputsTitle.add(lblOutputTitle);
-		
+
 		JPanel panelConfiguration = new JPanel();
 		frame.getContentPane().add(panelConfiguration, BorderLayout.CENTER);
 		panelConfiguration.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panelConfigurationText = new JPanel();
 		panelConfiguration.add(panelConfigurationText, BorderLayout.NORTH);
-		
+
 		JLabel lblNewLabel = new JLabel("Configuration");
 		panelConfigurationText.add(lblNewLabel);
-		
+
 		panelConfigurationGraph = new JPanel();
 		panelConfiguration.add(panelConfigurationGraph, BorderLayout.CENTER);
 	}
-	
+
 	public void disposeTheGraph(GAG gag) {
-		this.graphLayout =new GAGGraphAspect(gag);
+		this.graphLayout = new GAGGraphAspect(gag);
 		this.graphLayout.setWindowContainer(this);
 		this.graphLayout.dispose(panelConfigurationGraph);
 	}
-	
+
 	public void updateUI() {
-		
+
 		this.updateConfigurationValuePanel();
+		this.updateConfigurationEquationsPanel();
 	}
-	
-	
-	public void updateConfigurationEquationsPanel() {
-		ArrayList<Task> allTasks = this.graphLayout.getAllTasks(null);
-		// count the line numbers
-				int rows=0;
-		for(int i=0;i<allTasks.size();i++) {
-			Task el = allTasks.get(i);
-			if(el.isOpen())
-			{
-				rows++; // a line for the service equation eg. (x)=s(y)
-			}
-			
-			
-			rows+=el.getInputs().size()+el.getOutputs().size();
-		}
-		JPanel[][] panes = UIUtil.layout(rows, 3, panelConfigurationEquations);
-	}
-	
-	
+
 	public void updateConfigurationValuePanel() {
-		
+
 		ArrayList<Task> allTasks = this.graphLayout.getAllTasks(null);
-		
+
 		// count the line numbers
-		int rows=0;
-		for(int i=0;i<allTasks.size();i++) {
+		int rows = 0;
+		for (int i = 0; i < allTasks.size(); i++) {
 			Task el = allTasks.get(i);
-			rows+=el.getInputs().size()+el.getOutputs().size();
+			rows += el.getInputs().size() + el.getOutputs().size();
 		}
 		JPanel[][] panes = UIUtil.layout(rows, 3, panelConfValueContent);
-		int cpt=0;
-		for(int i=0;i<allTasks.size();i++) {
+		int cpt = 0;
+		for (int i = 0; i < allTasks.size(); i++) {
 			Task el = allTasks.get(i);
-			for(int k=0;k<el.getInputs().size();k++) {
+			for (int k = 0; k < el.getInputs().size(); k++) {
 				Data in = el.getInputs().get(k);
-				//panes[cpt][0].add( new JLabel(el.getService().getName()+"."+in.getParameter().getName()));
-				panes[cpt][0].add( new JLabel(in.getName()));
-				panes[cpt][1].add( new JLabel("="));
-				EncapsulatedValue ecD= (EncapsulatedValue)in.getValue();
-				panes[cpt][2].add( new JLabel((ecD.isNull())?"?":ecD.getValue().toString()) );
+				// panes[cpt][0].add( new
+				// JLabel(el.getService().getName()+"."+in.getParameter().getName()));
+				panes[cpt][0].add(new JLabel(in.getName()));
+				panes[cpt][1].add(new JLabel("="));
+				EncapsulatedValue ecD = (EncapsulatedValue) in.getValue();
+				panes[cpt][2].add(new JLabel((ecD.isNull()) ? "?" : ecD.getValue().toString()));
 				cpt++;
 			}
-			for(int k=0;k<el.getOutputs().size();k++) {
+			for (int k = 0; k < el.getOutputs().size(); k++) {
 				Data out = el.getOutputs().get(k);
-				//panes[cpt][0].add( new JLabel(el.getService().getName()+"."+out.getParameter().getName()));
-				panes[cpt][0].add( new JLabel(out.getName()));
-				panes[cpt][1].add( new JLabel("="));
-				EncapsulatedValue ecD= (EncapsulatedValue)out.getValue();
-				panes[cpt][2].add( new JLabel((ecD.isNull())?"?":ecD.getValue().toString()) );
+				// panes[cpt][0].add( new
+				// JLabel(el.getService().getName()+"."+out.getParameter().getName()));
+				panes[cpt][0].add(new JLabel(out.getName()));
+				panes[cpt][1].add(new JLabel("="));
+				EncapsulatedValue ecD = (EncapsulatedValue) out.getValue();
+				panes[cpt][2].add(new JLabel((ecD.isNull()) ? "?" : ecD.getValue().toString()));
 				cpt++;
 			}
 		}
 		panelConfValueContent.updateUI();
 	}
-	
+
 	public void setVisible(boolean visible) {
 		this.frame.setVisible(visible);
-		
-		//add listener event;
+
+		// add listener event;
 		this.btnStart.addActionListener(new ActionListener() {
 
 			@Override
@@ -250,7 +237,7 @@ public class ComponentIHM {
 				dialog.setGag(graphLayout);
 				dialog.showUI();
 			}
-			
+
 		});
 	}
 
@@ -261,10 +248,98 @@ public class ComponentIHM {
 	public void setGraphLayout(GAGGraphAspect graphLayout) {
 		this.graphLayout = graphLayout;
 	}
-	
+
 	public void setTitle(String title) {
 		frame.setTitle(title);
 	}
-	
+
+	public void updateConfigurationEquationsPanel() {
+		ArrayList<Task> allTasks = this.graphLayout.getAllTasks(null);
+		Configuration conf = (Configuration) this.graphLayout.getConfiguration();
+		// count the line numbers
+		int rows = 0;
+		for (int i = 0; i < allTasks.size(); i++) {
+			Task el = allTasks.get(i);
+			if (el.isOpen()) {
+				rows++; // a line for the service equation eg. (x)=s(y)
+				// add line for inputs ref
+			}
+			for (int j = 0; j < el.getInputs().size(); j++) {
+				Data dat = el.getInputs().get(j);
+				if (!EncapsulatedValue.isGlobalInput(dat, conf)) {
+					rows++; // it means that the data is computed from another data;
+					// we add a line to mention the computation;
+				}
+
+			}
+
+			if (!el.isOpen()) {
+				// add line to show outputs computations
+				rows += el.getOutputs().size();
+			}
+		}
+
+		JPanel[][] panes = UIUtil.layout(rows, 3, panelConfigurationEquations);
+		// redo the pool to place the equations in the panel
+
+		int count = 0;
+		for (int i = 0; i < allTasks.size(); i++) {
+			Task el = allTasks.get(i);
+			if (el.isOpen()) {
+				// add a line for the service equation eg. (x)=s(y)
+				TaskAspect ta = new TaskAspect(el);
+				String print = ta.prettyPrint();
+				String[] leftright = print.split("=");
+				panes[count][0].add(new JLabel(leftright[0]));
+				panes[count][1].add(new JLabel("="));
+				panes[count][2].add(new JLabel(leftright[1]));
+				count++;
+			}
+			// add lines for inputs ref
+			for (int j = 0; j < el.getInputs().size(); j++) {
+				Data dat = el.getInputs().get(j);
+				Object ref = EncapsulatedValue.getComputingReference(dat, conf);
+				if (ref != null) {
+					// it means that the data is computed from another data;
+					// we add a line to mention the computation;
+					String rightPart = "";
+					if (ref instanceof PendingLocalFunctionComputation) {
+						rightPart = (new PendingLocalFunctionComputationAspect((PendingLocalFunctionComputation) ref))
+								.prettyPrint();
+					} else {
+						rightPart = "id("+((Data) ref).getName()+")";
+					}
+					panes[count][0].add(new JLabel(dat.getName()));
+					panes[count][1].add(new JLabel("="));
+					panes[count][2].add(new JLabel(rightPart));
+					count++;
+				}
+
+			}
+			if (!el.isOpen()) {
+				// add line to show outputs computations
+				for (int j = 0; j < el.getOutputs().size(); j++) {
+					Data dat = el.getOutputs().get(j);
+					Object ref = EncapsulatedValue.getComputingReference(dat, conf);
+					if (ref != null) {
+						// it means that the data is computed from another data;
+						// we add a line to mention the computation;
+						String rightPart = "";
+						if (ref instanceof PendingLocalFunctionComputation) {
+							rightPart = (new PendingLocalFunctionComputationAspect(
+									(PendingLocalFunctionComputation) ref)).prettyPrint();
+						} else if(ref instanceof Data) {
+							rightPart = "id("+((Data) ref).getName()+")";
+						}
+						panes[count][0].add(new JLabel(dat.getName()));
+						panes[count][1].add(new JLabel("="));
+						panes[count][2].add(new JLabel(rightPart));
+						count++;
+					}
+				}
+
+			}
+		}
+	}
 
 }
