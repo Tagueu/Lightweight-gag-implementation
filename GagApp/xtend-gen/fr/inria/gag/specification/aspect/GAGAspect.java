@@ -417,8 +417,7 @@ public class GAGAspect extends GAG {
     for (final Integer i : _doubleDotLessThan) {
       {
         PendingLocalFunctionComputation func = runningFunctions.get((i).intValue());
-        Boolean _isExecutable = this.isExecutable(func);
-        if ((_isExecutable).booleanValue()) {
+        if (((this.isExecutable(func)).booleanValue() && (!func.isTerminated()))) {
           executableFunctions.add(func);
         }
       }
@@ -431,12 +430,12 @@ public class GAGAspect extends GAG {
           {
             PendingLocalFunctionComputation elFunc = executableFunctions.get((i_1).intValue());
             Object result = this.execute(elFunc);
+            elFunc.setTerminated(true);
             Object _value = elFunc.getDataToCompute().getValue();
             EncapsulatedValue ecObj = ((EncapsulatedValue) _value);
             ecObj.setValue(result);
           }
         }
-        runningFunctions.removeAll(executableFunctions);
         ArrayList<PendingLocalFunctionComputation> _arrayList = new ArrayList<PendingLocalFunctionComputation>();
         executableFunctions = _arrayList;
         int _size_2 = runningFunctions.size();
@@ -444,8 +443,7 @@ public class GAGAspect extends GAG {
         for (final Integer i_2 : _doubleDotLessThan_2) {
           {
             PendingLocalFunctionComputation func = runningFunctions.get((i_2).intValue());
-            Boolean _isExecutable = this.isExecutable(func);
-            if ((_isExecutable).booleanValue()) {
+            if (((this.isExecutable(func)).booleanValue() && (!func.isTerminated()))) {
               executableFunctions.add(func);
             }
           }

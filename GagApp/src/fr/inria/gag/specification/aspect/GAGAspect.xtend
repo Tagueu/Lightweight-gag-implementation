@@ -339,7 +339,7 @@ class GAGAspect extends GAG{
 		var executableFunctions = new ArrayList<PendingLocalFunctionComputation>
 		for (i : 0 ..< runningFunctions.size) {
 			var func = runningFunctions.get(i);
-			if (func.executable) {
+			if (func.executable && !func.terminated) {
 				executableFunctions.add(func);
 			}
 		}
@@ -348,22 +348,27 @@ class GAGAspect extends GAG{
 				//execute the function
 				var elFunc = executableFunctions.get(i);
 				var result = elFunc.execute;
+				//terminate the function
+				elFunc.terminated = true;
 				var ecObj= elFunc.dataToCompute.value as EncapsulatedValue;
 				ecObj.value = result;
 								
 			}
 			
-			runningFunctions.removeAll(executableFunctions); // remove the executed function
+			//runningFunctions.removeAll(executableFunctions); // remove the executed function
+			// we do not remove the terminated function any more, since the field terminated inform whether the function is terminated or not 
 			executableFunctions = new ArrayList<PendingLocalFunctionComputation> //re-initialize the candidate function list
 			for (i : 0 ..< runningFunctions.size) {
 				var func = runningFunctions.get(i);
-				if (func.executable) {
+				if (func.executable && !func.terminated) {
 					executableFunctions.add(func);
 				}
 			}
 		}
 
 	}
+	
+	
 	
 	
 	
@@ -405,6 +410,8 @@ class GAGAspect extends GAG{
 	def Object execute(PendingLocalFunctionComputation computation) {
 		return new PendingLocalFunctionComputationAspect(computation).execute;
 	}
+	
+	
 	
 	def String print(Configuration configuration) {
 		return (new ConfigurationAspect(configuration)).print;

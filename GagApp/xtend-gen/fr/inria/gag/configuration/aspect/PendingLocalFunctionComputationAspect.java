@@ -90,7 +90,8 @@ public class PendingLocalFunctionComputationAspect extends PendingLocalFunctionC
   
   public String prettyPrint() {
     String _name = this.getFunctionDeclaration().getName();
-    String result = (_name + "(");
+    String _plus = ("_ " + _name);
+    String result = (_plus + "(");
     int _size = this.getActualParameters().size();
     ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
     for (final Integer i : _doubleDotLessThan) {
@@ -107,6 +108,8 @@ public class PendingLocalFunctionComputationAspect extends PendingLocalFunctionC
         }
       }
     }
+    String _result = result;
+    result = (_result + ")");
     return result;
   }
 }

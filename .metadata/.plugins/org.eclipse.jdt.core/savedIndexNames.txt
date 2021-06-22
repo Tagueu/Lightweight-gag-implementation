@@ -2,7 +2,6 @@ INDEX VERSION 1.131+E:\PhD Recherche\Implementation\workspace-java\.metadata\.pl
 3542157851.index
 1848541361.index
 2228090719.index
-1736775699.index
 1486314611.index
 3564537711.index
 4050340005.index

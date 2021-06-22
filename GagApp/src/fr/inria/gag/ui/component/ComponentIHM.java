@@ -1,6 +1,7 @@
 package fr.inria.gag.ui.component;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -10,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -21,6 +23,7 @@ import fr.inria.gag.model.configuration.Data;
 import fr.inria.gag.model.configuration.PendingLocalFunctionComputation;
 import fr.inria.gag.model.configuration.Task;
 import fr.inria.gag.specification.aspect.GAGAspect;
+import fr.inria.gag.util.Console;
 import fr.inria.gag.util.EncapsulatedValue;
 import fr.inria.gag.util.UIUtil;
 
@@ -33,7 +36,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.FontUIResource;
+
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 
 public class ComponentIHM {
 
@@ -221,7 +228,12 @@ public class ComponentIHM {
 				cpt++;
 			}
 		}
+
+		// update the font
+		changeFont(panelConfValueContent, new Font("Arial", 0, 15), 3);
+
 		panelConfValueContent.updateUI();
+
 	}
 
 	public void setVisible(boolean visible) {
@@ -307,7 +319,7 @@ public class ComponentIHM {
 						rightPart = (new PendingLocalFunctionComputationAspect((PendingLocalFunctionComputation) ref))
 								.prettyPrint();
 					} else {
-						rightPart = "id("+((Data) ref).getName()+")";
+						rightPart = "_ id(" + ((Data) ref).getName() + ")";
 					}
 					panes[count][0].add(new JLabel(dat.getName()));
 					panes[count][1].add(new JLabel("="));
@@ -328,8 +340,8 @@ public class ComponentIHM {
 						if (ref instanceof PendingLocalFunctionComputation) {
 							rightPart = (new PendingLocalFunctionComputationAspect(
 									(PendingLocalFunctionComputation) ref)).prettyPrint();
-						} else if(ref instanceof Data) {
-							rightPart = "id("+((Data) ref).getName()+")";
+						} else if (ref instanceof Data) {
+							rightPart = "_ id(" + ((Data) ref).getName() + ")";
 						}
 						panes[count][0].add(new JLabel(dat.getName()));
 						panes[count][1].add(new JLabel("="));
@@ -340,6 +352,34 @@ public class ComponentIHM {
 
 			}
 		}
+		// update the font
+				changeFont(panelConfigurationEquations, new Font("Arial", 0, 15), 3);
+	}
+
+	private void changeFont(Container p, Font f, int level) {
+		Container mycomponent=p;
+		//specific case of jscrollpane
+		if(p instanceof JScrollPane) {
+			Component view = ((JScrollPane) p).getViewport().getView();
+			if(view instanceof Container) {
+				mycomponent=(Container)view;
+			}
+		}
+		if (level > 0) {
+			Component[] alls;
+			
+				alls = mycomponent.getComponents();
+			
+			for (int i = 0; i < alls.length; i++) {
+				Component el = alls[i];
+				el.setFont(f);
+				if (el instanceof Container) {
+					changeFont((Container)el, f, level - 1);
+				}
+				//Console.debug(el.getClass());
+			}
+		}
+
 	}
 
 }

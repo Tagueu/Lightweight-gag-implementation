@@ -7,6 +7,8 @@ import groovy.lang.*
 class PendingLocalFunctionComputationAspect extends PendingLocalFunctionComputation {
 	
 	static String classPath ="E:\\PhD Recherche\\Implementation\\workspace-java\\GagApp\\bin";
+	
+	
 	new(){
 		
 	}
@@ -64,16 +66,21 @@ class PendingLocalFunctionComputationAspect extends PendingLocalFunctionComputat
 	
 	}
 	
+	
+	
 	// just for debug purpose
 	def String prettyPrint(){
-		var result=functionDeclaration.name+"(";
+		var result="_ "+functionDeclaration.name+"(";
 		for(i:0 ..<actualParameters.size){
 			result+=actualParameters.get(i).name;
 			if(i!=(actualParameters.size-1)){
 				result+=",";
 			}
 		}
+		result+=")";
 		return result;
 	}
+	
+	
 	
 }

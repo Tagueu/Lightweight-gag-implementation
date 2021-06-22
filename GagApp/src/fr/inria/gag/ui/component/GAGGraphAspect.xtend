@@ -18,6 +18,7 @@ import fr.inria.gag.model.configuration.Task
 import fr.inria.gag.model.configuration.Data
 import java.awt.event.MouseListener
 import java.awt.event.MouseEvent
+import java.awt.Point
 
 class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 	
@@ -150,9 +151,21 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 		    graphComponent.setBackground(Color.WHITE);
 		    graphComponent.zoomAndCenter; 
 		    
-		      //translate the graph
-	      
-		    graph.view.translate = new mxPoint(703/2 - graph.graphBounds.width/2+40,50);
+		      
+		    
+		    
+		    //zoom the graph
+		    graphComponent.zoom(1.2);
+		    var size=graphComponent.viewport.viewSize;
+		    var bounds= graphComponent.getViewport().getViewRect();
+		    var x = (size.width - bounds.width) / 4;
+			//var y = (size.height - bounds.height) / 2;
+			var y = (0) / 2;
+			graphComponent.getViewport().setViewPosition(new Point(50, y));
+		    
+		    //translate the graph
+	        val graphwidth=graphComponent.getPreferredSize.width; // the value at fenetre creation is 703
+		    graph.view.translate = new mxPoint(graphwidth/2 - graph.graphBounds.width/2+40,50);
 		   // mypoint.
 	        //graphComponent.setSize(new Dimension(500, 500));
 	        //graphComponent.setPreferredSize(new Dimension(500,500));

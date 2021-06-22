@@ -8,6 +8,7 @@ public class PendingLocalFunctionComputation {
 	private Data dataToCompute;
 	private ArrayList<Data> actualParameters;
 	private FunctionDeclaration functionDeclaration;
+	private boolean terminated=false; //this boolean help to know if the function computation is terminated
 
 	public PendingLocalFunctionComputation() {
 		actualParameters =new ArrayList<Data>();
@@ -35,5 +36,12 @@ public class PendingLocalFunctionComputation {
 	public void setFunctionDeclaration(FunctionDeclaration functionDeclaration) {
 		this.functionDeclaration = functionDeclaration;
 	}
+	public boolean isTerminated() {
+		return terminated;
+	}
+	public void setTerminated(boolean terminated) {
+		this.terminated = terminated;
+	}
 
+	
 }
