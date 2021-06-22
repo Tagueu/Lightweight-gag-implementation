@@ -142,13 +142,17 @@ class GAGAspect extends GAG{
 			var data = new Data();
 			data.parameter = root.service.inputParameters.get(i);
 			Console.debug("Veuillez entrer la valeur du paramètre " + data.parameter.name);
-			data.value = new EncapsulatedValue(Console.readConsoleLine(""));
+			val ecD= new EncapsulatedValue(Console.readConsoleLine(""));
+			data.value =ecD ;
+			ecD.containerRef = data;
 			root.inputs.add(data);
 		}
 		for (i : 0 ..< root.service.outputParameters.size) {
 			var data = new Data();
 			data.parameter = root.service.outputParameters.get(i);
-			data.value = new EncapsulatedValue;
+			val ecD= new EncapsulatedValue;
+			data.value =ecD ;
+			ecD.containerRef = data;
 			root.outputs.add(data);
 		}
 		return root;
@@ -366,13 +370,17 @@ class GAGAspect extends GAG{
 		for (i : 0 ..< s.inputParameters.size) {
 			var data = new Data;
 			data.parameter = s.inputParameters.get(i);
-			data.value = new EncapsulatedValue;
+			val ecD= new EncapsulatedValue;
+			data.value =ecD ;
+			ecD.containerRef = data;
 			t.inputs.add(data);
 		}
 		for (i : 0 ..< s.outputParameters.size) {
 			var data = new Data;
 			data.parameter = s.outputParameters.get(i);
-			data.value = new EncapsulatedValue;
+			val ecD= new EncapsulatedValue;
+			data.value =ecD ;
+			ecD.containerRef = data;
 			t.outputs.add(data);
 		}
 	}

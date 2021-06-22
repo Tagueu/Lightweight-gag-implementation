@@ -1,11 +1,16 @@
 package fr.inria.gag.util;
 
+import fr.inria.gag.model.configuration.Configuration;
+import fr.inria.gag.model.configuration.Data;
+import fr.inria.gag.model.configuration.PendingLocalFunctionComputation;
 
 // A class for better variable reference management
 public class EncapsulatedValue {
 
 	private Object value ;
 	private EncapsulatedValue next;
+	private Data containerRef; // the data to which this object is a value;
+	// the program can work whitout this. It is only need for graphical debug;
 	
 	public EncapsulatedValue() {
 		value=null;
@@ -40,5 +45,50 @@ public class EncapsulatedValue {
 		
 		return (getValue()==null);
 	}
+	
+	// return a data or a computing function
+	public static Object getComputingReference(Data d,Configuration conf) {
+		EncapsulatedValue ecD=(EncapsulatedValue) d.getValue();
+		Object result=null;
+		if(ecD.getAssociatedData()==null) {
+			// look now for a function computing this data
+			PendingLocalFunctionComputation func=null;
+			for(int i=0;i<conf.getPendingLocalComputations().size();i++) {
+				PendingLocalFunctionComputation el = conf.getPendingLocalComputations().get(i);
+				if(el.getDataToCompute()==d) {
+					func=el;
+					break;
+				}
+				result=func;
+			}
+			
+		}else {
+			result=ecD.getAssociatedData();
+		}
+		return result;
+	}
+	
+	//return wheter a data is a global input or not
+	public static boolean isGlobalInput(Data d, Configuration conf) {
+		return (getComputingReference(d,conf)==null);
+	}
+	
+	
+	public Data getContainerRef() {
+		return containerRef;
+	}
+	public void setContainerRef(Data containerRef) {
+		this.containerRef = containerRef;
+	}
+	
+	public Data getAssociatedData() {
+		EncapsulatedValue myNext=next;
+		
+		return myNext.containerRef;
+	}
+	
+	
+	
+	
 	
 }

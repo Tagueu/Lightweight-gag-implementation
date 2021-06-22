@@ -176,8 +176,9 @@ public class GAGAspect extends GAG {
         String _plus = ("Veuillez entrer la valeur du paramètre " + _name);
         Console.debug(_plus);
         String _readConsoleLine = Console.readConsoleLine("");
-        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue(_readConsoleLine);
-        data.setValue(_encapsulatedValue);
+        final EncapsulatedValue ecD = new EncapsulatedValue(_readConsoleLine);
+        data.setValue(ecD);
+        ecD.setContainerRef(data);
         root.getInputs().add(data);
       }
     }
@@ -187,8 +188,9 @@ public class GAGAspect extends GAG {
       {
         Data data = new Data();
         data.setParameter(root.getService().getOutputParameters().get((i_1).intValue()));
-        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue();
-        data.setValue(_encapsulatedValue);
+        final EncapsulatedValue ecD = new EncapsulatedValue();
+        data.setValue(ecD);
+        ecD.setContainerRef(data);
         root.getOutputs().add(data);
       }
     }
@@ -459,8 +461,9 @@ public class GAGAspect extends GAG {
       {
         Data data = new Data();
         data.setParameter(s.getInputParameters().get((i).intValue()));
-        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue();
-        data.setValue(_encapsulatedValue);
+        final EncapsulatedValue ecD = new EncapsulatedValue();
+        data.setValue(ecD);
+        ecD.setContainerRef(data);
         t.getInputs().add(data);
       }
     }
@@ -470,8 +473,9 @@ public class GAGAspect extends GAG {
       {
         Data data = new Data();
         data.setParameter(s.getOutputParameters().get((i_1).intValue()));
-        EncapsulatedValue _encapsulatedValue = new EncapsulatedValue();
-        data.setValue(_encapsulatedValue);
+        final EncapsulatedValue ecD = new EncapsulatedValue();
+        data.setValue(ecD);
+        ecD.setContainerRef(data);
         t.getOutputs().add(data);
       }
     }

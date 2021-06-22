@@ -75,7 +75,7 @@ private GAG gag;
 					}if(value instanceof Data){
 						
 						Data d = (Data) value;
-						return d.getParameter().getName();//return data label or value
+						return d.getName();//return data label or value
 					}
 				}
 

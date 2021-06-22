@@ -39,6 +39,7 @@ public class ComponentIHM {
 	private GAGGraphAspect graphLayout;
 	private JPanel panelConfValueContent;
 	private JButton btnStart;
+	private JPanel panelConfigurationEquations;
 
 	/**
 	 * Launch the application.
@@ -140,8 +141,11 @@ public class ComponentIHM {
 		JPanel panelInputValueTitle = new JPanel();
 		panelInputs.add(panelInputValueTitle, BorderLayout.NORTH);
 		
-		JLabel lblInputVariables = new JLabel("Inputs");
+		JLabel lblInputVariables = new JLabel("Configuration Pending Computations");
 		panelInputValueTitle.add(lblInputVariables);
+		
+		panelConfigurationEquations = new JPanel();
+		panelInputs.add(panelConfigurationEquations, BorderLayout.CENTER);
 		
 		JPanel panelOutputs = new JPanel();
 		panelMetaData.add(panelOutputs);
@@ -178,9 +182,29 @@ public class ComponentIHM {
 		this.updateConfigurationValuePanel();
 	}
 	
+	
+	public void updateConfigurationEquationsPanel() {
+		ArrayList<Task> allTasks = this.graphLayout.getAllTasks(null);
+		// count the line numbers
+				int rows=0;
+		for(int i=0;i<allTasks.size();i++) {
+			Task el = allTasks.get(i);
+			if(el.isOpen())
+			{
+				rows++; // a line for the service equation eg. (x)=s(y)
+			}
+			
+			
+			rows+=el.getInputs().size()+el.getOutputs().size();
+		}
+		JPanel[][] panes = UIUtil.layout(rows, 3, panelConfigurationEquations);
+	}
+	
+	
 	public void updateConfigurationValuePanel() {
 		
 		ArrayList<Task> allTasks = this.graphLayout.getAllTasks(null);
+		
 		// count the line numbers
 		int rows=0;
 		for(int i=0;i<allTasks.size();i++) {
@@ -193,7 +217,8 @@ public class ComponentIHM {
 			Task el = allTasks.get(i);
 			for(int k=0;k<el.getInputs().size();k++) {
 				Data in = el.getInputs().get(k);
-				panes[cpt][0].add( new JLabel(el.getService().getName()+"."+in.getParameter().getName()));
+				//panes[cpt][0].add( new JLabel(el.getService().getName()+"."+in.getParameter().getName()));
+				panes[cpt][0].add( new JLabel(in.getName()));
 				panes[cpt][1].add( new JLabel("="));
 				EncapsulatedValue ecD= (EncapsulatedValue)in.getValue();
 				panes[cpt][2].add( new JLabel((ecD.isNull())?"?":ecD.getValue().toString()) );
@@ -201,7 +226,8 @@ public class ComponentIHM {
 			}
 			for(int k=0;k<el.getOutputs().size();k++) {
 				Data out = el.getOutputs().get(k);
-				panes[cpt][0].add( new JLabel(el.getService().getName()+"."+out.getParameter().getName()));
+				//panes[cpt][0].add( new JLabel(el.getService().getName()+"."+out.getParameter().getName()));
+				panes[cpt][0].add( new JLabel(out.getName()));
 				panes[cpt][1].add( new JLabel("="));
 				EncapsulatedValue ecD= (EncapsulatedValue)out.getValue();
 				panes[cpt][2].add( new JLabel((ecD.isNull())?"?":ecD.getValue().toString()) );
