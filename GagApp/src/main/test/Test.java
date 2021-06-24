@@ -7,19 +7,19 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAttribute;
 
-import fr.inria.gag.model.configuration.Configuration;
-import fr.inria.gag.model.specification.DecompositionRule;
-import fr.inria.gag.model.specification.Equation;
-import fr.inria.gag.model.specification.FunctionDeclaration;
-import fr.inria.gag.model.specification.FunctionExpression;
-import fr.inria.gag.model.specification.GAG;
-import fr.inria.gag.model.specification.Guard;
-import fr.inria.gag.model.specification.IdExpression;
-import fr.inria.gag.model.specification.Parameter;
-import fr.inria.gag.model.specification.SemanticRule;
-import fr.inria.gag.model.specification.Service;
-import fr.inria.gag.specification.aspect.GAGAspect;
-import fr.inria.gag.ui.component.ComponentIHM;
+import cm.uds.fuchsia.gag.model.configuration.Configuration;
+import cm.uds.fuchsia.gag.model.specification.DecompositionRule;
+import cm.uds.fuchsia.gag.model.specification.Equation;
+import cm.uds.fuchsia.gag.model.specification.FunctionDeclaration;
+import cm.uds.fuchsia.gag.model.specification.FunctionExpression;
+import cm.uds.fuchsia.gag.model.specification.GAG;
+import cm.uds.fuchsia.gag.model.specification.Guard;
+import cm.uds.fuchsia.gag.model.specification.IdExpression;
+import cm.uds.fuchsia.gag.model.specification.Parameter;
+import cm.uds.fuchsia.gag.model.specification.SemanticRule;
+import cm.uds.fuchsia.gag.model.specification.Service;
+import cm.uds.fuchsia.gag.ui.component.ComponentIHM;
+import cm.uds.fuchsia.gag.specification.aspect.GAGAspect;
 import groovy.lang.*;
 
 public class Test {
