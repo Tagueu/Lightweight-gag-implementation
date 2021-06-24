@@ -13,6 +13,10 @@ public class Service {
 	private ArrayList<Parameter> inputParameters;
 	private ArrayList<Parameter> outputParameters;
 	private ArrayList<DecompositionRule> rules;
+	// fields that apply when the service is remote
+	
+	private Boolean remote;
+	private String location;
 	
 	public Service() {
 		rules = new ArrayList<DecompositionRule>();
@@ -57,6 +61,22 @@ public class Service {
 	public void setRules(ArrayList<DecompositionRule> rules) {
 		this.rules = rules;
 	}
+	@XmlAttribute
+	public Boolean isRemote() {
+		return remote;
+	}
+	public void setRemote(Boolean remote) {
+		this.remote = remote;
+	}
+	@XmlAttribute
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
+	
 	
 	
 }
