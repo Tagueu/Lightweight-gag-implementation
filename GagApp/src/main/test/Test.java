@@ -24,7 +24,12 @@ import groovy.lang.*;
 
 public class Test {
 
-	static String classPath ="E:\\PhD Recherche\\Implementation\\workspace-java\\GagApp\\bin";
+static String classPath ="E:\\PhD Recherche\\Implementation\\workspace-java\\GagApp\\bin";
+	
+	public static void launchComponent(String componentName, String gagfile) {
+		
+	}
+	
 	public static void main (String[] args) {
 		
 		System.out.println("Hello world");

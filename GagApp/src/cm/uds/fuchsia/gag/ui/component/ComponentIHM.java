@@ -36,6 +36,7 @@ import cm.uds.fuchsia.gag.model.configuration.Data;
 import cm.uds.fuchsia.gag.model.configuration.PendingLocalFunctionComputation;
 import cm.uds.fuchsia.gag.model.configuration.Task;
 import cm.uds.fuchsia.gag.model.specification.GAG;
+import cm.uds.fuchsia.gag.network.Subscription;
 import cm.uds.fuchsia.gag.util.Console;
 import cm.uds.fuchsia.gag.util.EncapsulatedValue;
 import cm.uds.fuchsia.gag.util.UIUtil;
@@ -52,6 +53,7 @@ public class ComponentIHM {
 	private JPanel panelConfValueContent;
 	private JButton btnStart;
 	private JPanel panelConfigurationEquations;
+	private ArrayList<Subscription> subscriptionsList;
 
 	/**
 	 * Launch the application.
@@ -383,5 +385,15 @@ public class ComponentIHM {
 		}
 
 	}
+
+	public ArrayList<Subscription> getSubscriptionsList() {
+		return subscriptionsList;
+	}
+
+	public void setSubscriptionsList(ArrayList<Subscription> subscriptionsList) {
+		this.subscriptionsList = subscriptionsList;
+	}
+	
+	
 
 }

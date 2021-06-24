@@ -15,7 +15,7 @@ public class Service {
 	private ArrayList<DecompositionRule> rules;
 	// fields that apply when the service is remote
 	
-	private Boolean remote;
+	private Boolean remote=false; // default false
 	private String location;
 	
 	public Service() {
