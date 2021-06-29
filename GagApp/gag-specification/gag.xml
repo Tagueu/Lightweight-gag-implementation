@@ -22,7 +22,7 @@
 			</semantic>
 		</production>
 	</service>
-	<service name="S2">
+	<service name="S2" remote="true">
 		<input name="a" />
 		<output name="b" />
 		<production name="R1">

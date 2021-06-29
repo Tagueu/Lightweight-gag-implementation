@@ -70,6 +70,8 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseL
   
   public static String styleServiceOpen = ((((((mxConstants.STYLE_FILLCOLOR + "=#c0bfc6") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";");
   
+  public static String styleServiceRemote = ((((((((((((((((mxConstants.STYLE_FILLCOLOR + "=#ffffff") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";") + mxConstants.STYLE_DASHED) + "=") + "1") + ";") + mxConstants.STYLE_DASH_PATTERN) + "=10") + ";") + mxConstants.STYLE_STROKECOLOR) + "=#c0bfc6") + ";");
+  
   public static String styleServiceInput = (((((((((mxConstants.STYLE_FILLCOLOR + "=#ffffff") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";") + mxConstants.STYLE_STROKECOLOR) + "=green") + ";");
   
   public static String styleServiceOutput = (((((((((mxConstants.STYLE_FILLCOLOR + "=#ffffff") + ";") + mxConstants.STYLE_SHAPE) + "=") + mxConstants.SHAPE_ELLIPSE) + ";") + mxConstants.STYLE_STROKECOLOR) + "=red") + ";");
@@ -258,17 +260,22 @@ public class GAGGraphAspect extends GAGAspect implements OutputInterface, MouseL
   }
   
   public void draw(final Task task, final Task parent) {
+    String myStyleService = "";
+    boolean _isOpen = task.isOpen();
+    if (_isOpen) {
+      myStyleService = GAGGraphAspect.styleServiceOpen;
+    } else {
+      myStyleService = GAGGraphAspect.styleService;
+    }
+    Boolean _isRemote = task.getService().isRemote();
+    if ((_isRemote).booleanValue()) {
+      myStyleService = GAGGraphAspect.styleServiceRemote;
+      Console.debug("the service is remote");
+    }
     int _length = task.getService().getName().length();
     int _multiply = (_length * 20);
     int _plus = (_multiply + 20);
-    String _xifexpression = null;
-    boolean _isOpen = task.isOpen();
-    if (_isOpen) {
-      _xifexpression = GAGGraphAspect.styleServiceOpen;
-    } else {
-      _xifexpression = GAGGraphAspect.styleService;
-    }
-    Object v = this.graph.insertVertex(this.parent, null, task, 400, 10, _plus, 50, _xifexpression);
+    Object v = this.graph.insertVertex(this.parent, null, task, 400, 10, _plus, 50, myStyleService);
     this.mapDataGraph.put(task, v);
     this.mapGraphData.put(v, task);
     boolean _notEquals = (!Objects.equal(parent, null));

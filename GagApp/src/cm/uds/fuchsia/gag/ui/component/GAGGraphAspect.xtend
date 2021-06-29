@@ -45,6 +45,8 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
     //new style
     public static String styleArrowSun=mxConstants.STYLE_ENDARROW + "=" + mxConstants.ARROW_OPEN+";"+mxConstants.STYLE_STARTARROW + "=" + mxConstants.ARROW_OVAL +";";
 	public static String styleServiceOpen=mxConstants.STYLE_FILLCOLOR + "=#c0bfc6"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";";
+	public static String styleServiceRemote=mxConstants.STYLE_FILLCOLOR + "=#ffffff"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";"+mxConstants.STYLE_DASHED+"="+"1"
+                           +";"+ mxConstants.STYLE_DASH_PATTERN + "=10"+";"+mxConstants.STYLE_STROKECOLOR+"=#c0bfc6"+";";
 	public static String styleServiceInput=mxConstants.STYLE_FILLCOLOR + "=#ffffff"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";"+mxConstants.STYLE_STROKECOLOR+"=green"+";";
 	public static String styleServiceOutput=mxConstants.STYLE_FILLCOLOR + "=#ffffff"+";"+mxConstants.STYLE_SHAPE+"="+mxConstants.SHAPE_ELLIPSE+";"+mxConstants.STYLE_STROKECOLOR+"=red"+";";
 	Object parent
@@ -213,7 +215,18 @@ class GAGGraphAspect extends GAGAspect implements OutputInterface,MouseListener{
 	}
 	
 	def void draw(Task task, Task parent) {
-		var v = graph.insertVertex(this.parent, null, task, 400, 10, task.getService.getName().length()*20+20, 50,(task.open)?styleServiceOpen:styleService);
+		var myStyleService="";
+		if(task.isOpen){
+			myStyleService=styleServiceOpen;
+		}else{
+			myStyleService=styleService;
+		}
+		if(task.service.remote){
+			myStyleService=styleServiceRemote;
+			Console.debug("the service is remote");
+		}
+		
+		var v = graph.insertVertex(this.parent, null, task, 400, 10, task.getService.getName().length()*20+20, 50,myStyleService);
 	             this.mapDataGraph.put(task,v);
 	             mapGraphData.put(v,task);
 	     if(parent!=null){
